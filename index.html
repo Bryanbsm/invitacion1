@@ -301,11 +301,22 @@
                     </div>
 
                     <!-- Carta que se asoma y luego se desliza hacia afuera -->
-                    <div id="letter-card" class="absolute left-1/2 -translate-x-1/2 top-[24px] w-[80%] h-[120px] rounded-[2px] z-10 flex items-center justify-center gap-2"
+                    <!--<div id="letter-card" class="absolute left-1/2 -translate-x-1/2 top-[24px] w-[80%] h-[120px] rounded-[2px] z-10 flex items-center justify-center gap-2"
                          style="background: linear-gradient(180deg,#FBF6EC,#F1E7D4); box-shadow: 0 4px 10px rgba(0,0,0,0.35); border: 1px solid rgba(212,175,55,0.4);">
                         <span class="font-serif italic text-[13px] tracking-[0.15em]" style="color:#3a2f1d;">B</span>
                         <span class="font-serif text-[11px]" style="color:#AA820A;">&</span>
                         <span class="font-serif italic text-[13px] tracking-[0.15em]" style="color:#3a2f1d;">K</span>
+                    </div> -->
+                    <div id="letter-card" class="absolute left-1/2 -translate-x-1/2 top-[24px] w-[80%] h-[120px] rounded-[2px] z-10 flex flex-col items-center justify-center gap-1"
+                         style="background: linear-gradient(180deg,#FBF6EC,#F1E7D4); box-shadow: 0 4px 10px rgba(0,0,0,0.35); border: 1px solid rgba(212,175,55,0.4);">
+                        
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="font-serif italic text-[13px] tracking-[0.15em]" style="color:#3a2f1d;">Bryan</span>
+                            <span class="font-serif text-[11px]" style="color:#AA820A;">&</span>
+                            <span class="font-serif italic text-[13px] tracking-[0.15em]" style="color:#3a2f1d;">Katherin</span>
+                        </div>
+
+                        <img src="assets/anillos.png" alt="Anillos" class="w-11 h-11 object-contain opacity-80 mt-1">
                     </div>
 
                     <!-- Solapa superior (triángulo) con brillo -->
@@ -391,7 +402,7 @@
 
             <!-- SECTION 2: NUESTRA HISTORIA (Scroll-driven Word Reveal) -->
             <section id="historia" class="min-h-screen w-full flex flex-col justify-center px-8 py-20 relative">
-                <div class="absolute inset-0 bg-[url('assets/foto1.jpg')] bg-cover bg-fixed bg-center opacity-[0.04] pointer-events-none z-0"></div>
+                <div class="absolute inset-0 bg-[url('assets/foto1.jpg')] bg-cover bg-fixed bg-center opacity-[0.09] pointer-events-none z-0"></div>
                 <div class="text-center mb-12 reveal-element">
                     <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">El Destino</span>
                     <h2 class="font-serif text-3xl text-white mt-1">Nuestra Historia</h2>
@@ -613,7 +624,7 @@
 
             <!-- SECTION 5: RSVP (CONFIRMACIÓN) -->
             <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
-               <div class="absolute inset-0 bg-[url('assets/foto2.jpg')] bg-cover bg-fixed bg-center opacity-[0.04] pointer-events-none z-0"></div>
+               <div class="absolute inset-0 bg-[url('assets/foto2.jpg')] bg-cover bg-fixed bg-center opacity-[0.10] pointer-events-none z-0"></div>
                 <div class="text-center mb-8 reveal-element"> 
                     <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Confirmación de Asistencia</span>
                     <h2 class="font-serif text-3xl text-white mt-1">Acompáñanos</h2>
@@ -687,7 +698,7 @@
             <footer class="py-16 text-center border-t border-slate-900 bg-navy-dark/50">
                 <p class="font-serif text-2xl text-rosegold-300">B & K</p>
                 <p class="text-[9px] tracking-[0.3em] text-slate-500 uppercase mt-2">14 de Noviembre de 2026</p>
-                <p class="text-[8px] text-slate-600 uppercase mt-8 tracking-widest">Creado con amor • Por el novio</p>
+                <p class="text-[8px] text-slate-600 uppercase mt-8 tracking-widest">Creado con amor por el novio de la boda</p>
             </footer>
 
         </div>
