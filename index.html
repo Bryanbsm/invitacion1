@@ -278,7 +278,7 @@
             </div>
 
             <div class="relative z-10 flex flex-col items-center gap-8">
-                <span class="text-[9px] tracking-[0.35em] text-rosegold-300/60 uppercase font-medium">Tienes una invitación</span>
+                <span class="text-[15px] tracking-[0.35em] text-rosegold-300/60 uppercase font-medium">Tienes una invitación</span>
 
                 <div id="envelope-scene" class="relative w-[240px] h-[168px] cursor-pointer">
                     <!-- Sombra flotante debajo del sobre -->
@@ -323,7 +323,7 @@
                 </div>
 
                 <div class="flex flex-col items-center gap-2">
-                    <p class="text-[10px] tracking-widest text-slate-400 uppercase">Toca el sobre o desliza para abrir</p>
+                    <p class="text-[13px] tracking-widest text-slate-400 uppercase">Toca el sobre o desliza para abrir</p>
                     <div class="text-rosegold-300/60 animate-bounce">
                         <i data-lucide="chevron-down" class="w-5 h-5"></i>
                     </div>
@@ -354,7 +354,7 @@
                         Tenemos el honor de invitarlos a celebrar nuestra boda.</span>  
                     <h3 class="font-serif text-3xl text-white mt-1">Con la bendición de Dios y de nuestras familias 
                         Tenemos el honor de invitarlos a celebrar nuestra boda.</h3>-->
-                        <h1 class="font-serif italic text-lg text-rosegold-200/70 leading-7 max-w-[460px] mx-auto mt-2">Con la bendición de Dios, <br> tenemos el honor de invitarlos <br>a celebrar Nuestra Boda.</h1>
+                        <h1 class="font-serif italic text-xl text-rosegold-200/70 leading-7 max-w-[460px] mx-auto mt-2">Muy pronto tendra lugar unos de los momentos mas importantes y felices de nuestras vidas. <br> Con la bendición de Dios, tenemos el honor de invitarlos a celebrar Nuestra Boda.</h1>
                       
                 </div>
 
@@ -391,6 +391,7 @@
 
             <!-- SECTION 2: NUESTRA HISTORIA (Scroll-driven Word Reveal) -->
             <section id="historia" class="min-h-screen w-full flex flex-col justify-center px-8 py-20 relative">
+                <div class="absolute inset-0 bg-[url('assets/foto1.jpg')] bg-cover bg-fixed bg-center opacity-[0.04] pointer-events-none z-0"></div>
                 <div class="text-center mb-12 reveal-element">
                     <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">El Destino</span>
                     <h2 class="font-serif text-3xl text-white mt-1">Nuestra Historia</h2>
@@ -417,62 +418,6 @@
                 </div>
             </section>
 
-
-  <!-- SECTION 4: DETALLES DEL EVENTO -->
-            <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
-                <div class="text-center mb-10 reveal-element">
-                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">La Celebración</span>
-                    <h2 class="font-serif text-3xl text-white mt-1">Detalles de la Boda</h2>
-                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
-                </div>
-
-                <!-- Ceremony Elegant Card -->
-                <div class="glass-card rounded-3xl p-8 relative space-y-8 overflow-hidden reveal-element">
-                    <!-- Icon Header -->
-                    <div class="flex justify-center">
-                        <div class="p-4 rounded-full bg-rosegold-300/5 border border-rosegold-300/20 text-rosegold-300">
-                            <i data-lucide="church" class="w-8 h-8"></i>
-                        </div>
-                    </div>
-
-                    <!-- Title & Venue -->
-                    <div class="text-center space-y-2">
-                        <h3 class="font-serif text-2xl text-white tracking-wide font-light">La Ceremonia</h3>
-                        <p class="font-serif text-rosegold-300 text-lg italic">Parroquia La Inmaculada</p>
-                        <p class="text-xs text-slate-400">Belalcázar, Caldas</p>
-                    </div>
-
-                    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-rosegold-300/20 to-transparent"></div>
-
-                    <!-- Event Logistics -->
-                    <div class="grid grid-cols-2 gap-4 text-center">
-                        <div class="space-y-1">
-                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium">Hora</span>
-                            <p class="text-sm font-light text-slate-200 mt-1">04:00 PM</p>
-                        </div>
-                         
-                        <!-- Tooltip Interactivo para Vestimenta -->
-                        <div class="space-y-1 cursor-pointer group relative" onclick="showDressCodeAlert()">
-                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium flex justify-center items-center gap-1">
-                                Vestimenta
-                                <i data-lucide="info" class="w-3 h-3 text-rosegold-400 group-hover:animate-pulse"></i>
-                            </span>
-                            <p class="text-sm font-light text-slate-200 mt-1 underline decoration-dashed decoration-rosegold-300/50 underline-offset-4">Gala / Formal</p>
-                        </div>
-                    </div>
-
-                    <!-- Location CTA Button -->
-                    <div class="pt-4">
-                        <a href="https://maps.app.goo.gl/CxwR12ZooaeQFiVR8" 
-                           target="_blank" 
-                           class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
-                            <i data-lucide="map-pin" class="w-4 h-4"></i>
-                            Ver Ubicación
-                        </a>
-                    </div>
-                </div>
-
-                
 
 <!-- SECTION 3: FECHA (Calendario interactivo + Cuenta Regresiva) -->
             <section class="w-full px-6 py-12 flex flex-col items-center">
@@ -543,7 +488,115 @@
                 </div>
             </section>
 
+  <!-- SECTION 4: DETALLES DEL EVENTO -->
+            <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
+                <div class="text-center mb-10 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">La Celebración</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Detalles de la Boda</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+                </div>
+
+                <!-- Ceremony Elegant Card -->
+                <div class="glass-card rounded-3xl p-8 relative space-y-8 overflow-hidden reveal-element">
+                    <!-- Icon Header Foto Iglesia-->
+                     <div class="absolute inset-0 bg-[url('assets/iglesia.jpg')] bg-cover bg-center opacity-20 blur-[3px] z-0 transition-all duration-1000"></div>
+                    <div class="absolute inset-0 bg-navy-dark/60 z-0"></div>
+                     <!-- Icon Header -->
+                 <div class="relative z-10">
+                        <div class="flex justify-center mb-6">
+                            <div class="p-4 rounded-full bg-rosegold-300/5 border border-rosegold-300/20 text-rosegold-300">
+                                <i data-lucide="church" class="w-8 h-8"></i>
+                            </div>
+                        </div>
+
+                    <!-- Title & Venue -->
+                    <div class="text-center space-y-2 mb-6">
+                        <h3 class="font-serif text-2xl text-white tracking-wide font-light">La Ceremonia</h3>
+                        <p class="font-serif text-rosegold-300 text-lg italic">Parroquia La Inmaculada</p>
+                        <p class="text-xs text-slate-400">Belalcázar, Caldas</p>
+                    </div>
+
+                    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-rosegold-300/20 to-transparent"></div>
+
+                    <!-- Event Logistics -->
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="space-y-1">
+                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium">Hora</span>
+                            <p class="text-sm font-light text-slate-200 mt-1">04:00 PM</p>
+                        </div>
+                         
+                        <!-- Tooltip Interactivo para Vestimenta -->
+                        <div class="space-y-1 cursor-pointer group relative" onclick="showDressCodeAlert()">
+                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium flex justify-center items-center gap-1">
+                                Vestimenta
+                                <i data-lucide="info" class="w-3 h-3 text-rosegold-400 group-hover:animate-pulse"></i>
+                            </span>
+                            <p class="text-sm font-light text-slate-200 mt-1 underline decoration-dashed decoration-rosegold-300/50 underline-offset-4">Gala / Formal</p>
+                        </div>
+                    </div>
+
+                    <!-- Location CTA Button -->
+                    <div class="pt-4">
+                        <a href="https://maps.app.goo.gl/CxwR12ZooaeQFiVR8" 
+                           target="_blank" 
+                           class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                            Ver Ubicación
+                        </a>
+                    </div>
+                </div>
+                </section>
+
+
+                
+  <!-- SECTION 5: codigo de vestimenta Colores -->
+                <section class="w-full flex flex-col justify-center px-6 py-12 relative">
+                <div class="text-center mb-10 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Dress Code</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Código de Vestimenta</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 relative overflow-hidden reveal-element text-center">
+                    <p class="font-serif text-lg text-white mb-6 font-light">Colores recomendados</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3 mb-8">
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #070707;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #b35e49;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #996c31;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #aa4425;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #800000;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #7ea136;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #d1af15;"></div> 
+
+                    </div>
+
+                    <div class="border-t border-rosegold-300/20 pt-6 mt-2">
+                        <p class="text-[10px] tracking-widest text-rosegold-300 uppercase font-medium mb-2">Importante</p>
+                        <p class="text-sm font-light text-slate-300">Nos reservamos el <b>blanco</b> y el <b>azul</b> exclusivamente para los novios.</p>
+                    </div>
+                </div>
+            </section>
+
+
+  <!-- SECTION 6: SOLO ADULTOS-->
+
+             <section class="w-full flex flex-col justify-center px-6 py-4 relative mb-8">
+                <div class="glass-card rounded-3xl p-6 text-center reveal-element border border-rosegold-300/20">
+                    <div class="flex justify-center mb-4">
+                        <div class="p-3 rounded-full bg-rosegold-300/5 text-rosegold-300">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-white tracking-wide font-light mb-2">Solo Adultos</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed px-2">
+                        Aunque amamos a los más pequeños, <br> este evento será exclusivo para adultos.
+                    </p>
+                </div>
+            </section>
+
 <!-- Elegant Card for Details / Souvenir (Lluvia de sobres) icono regalo -->
+ 
                 <div class="glass-card rounded-3xl p-6 mt-6 relative space-y-4 reveal-element">
                     <div class="flex items-center gap-4">
                         <div class="p-5 rounded-full bg-gold/5 border border-gold/20 text-gold">
@@ -551,17 +604,18 @@
                         </div>
                         <div>
                          <!--    <h4 class="font-serif text-lg text-white font-light">LS</h4>-->
-                            <p class="text-xs text-slate-400 mt-0.5">Tu presencia es nuestro mayor regalo, sin embargo, si deseas tener un detalle con nosotros, lo recibiremos con mucho cariño y gratitud.</p>
+                            <p class="text-sm text-slate-400 mt-0.5">Tu presencia es nuestro mayor regalo, poder compartir este dia contigo.</p>
                         </div>
                     </div>
                 </div>
-            </section>
+          
 
 
             <!-- SECTION 5: RSVP (CONFIRMACIÓN) -->
             <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
-                <div class="text-center mb-8 reveal-element">
-                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Confirmación</span>
+               <div class="absolute inset-0 bg-[url('assets/foto2.jpg')] bg-cover bg-fixed bg-center opacity-[0.04] pointer-events-none z-0"></div>
+                <div class="text-center mb-8 reveal-element"> 
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Confirmación de Asistencia</span>
                     <h2 class="font-serif text-3xl text-white mt-1">Acompáñanos</h2>
                     <p class="text-xs text-slate-400 mt-2">Agradecemos confirmar tu asistencia antes del <br> 15 de Octubre de 2026</p>
                     <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-4"></div>
