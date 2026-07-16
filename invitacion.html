@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Bryan & Katherin - ¡Nos Casamos! 14.11.2026</title>
+
+    <!-- ============================================================
+         VISTA PREVIA AL COMPARTIR (WhatsApp, Facebook, iMessage, etc.)
+         IMPORTANTE: WhatsApp NO ejecuta el HTML/CSS/JS de esta página
+         para armar la miniatura del enlace; solo lee estas etiquetas
+         y descarga la imagen indicada en "og:image". Por eso:
+         1) Sube este archivo Y la carpeta /assets a un hosting público
+            (Netlify, GitHub Pages, tu propio dominio, etc.)
+         2) Reemplaza las URLs de abajo (og:url y og:image) por la URL
+            pública final donde quede alojada la imagen y la página.
+         3) Si cambias la imagen luego, usa el "Facebook Sharing Debugger"
+            o comparte con un "?v=2" al final del link para forzar a
+            WhatsApp a refrescar la miniatura (la cachea agresivamente).
+    ============================================================ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bryan & Katherin - ¡Nos Casamos!">
+    <meta property="og:description" content="Toca para abrir tu invitación 💌 14 de Noviembre de 2026 · Belalcázar, Caldas">
+    <meta property="og:image" content="https://TU-DOMINIO-AQUI.com/assets/preview-sobre.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://TU-DOMINIO-AQUI.com/invitacion.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bryan & Katherin - ¡Nos Casamos!">
+    <meta name="twitter:description" content="14 de Noviembre de 2026 · Belalcázar, Caldas">
+    <meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/assets/preview-sobre.png">
+
+    <!-- Favicon / ícono al agregar a inicio del celular (mismo lacre de la invitación) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#0B132B">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            dark: '#070B19',
+                            medium: '#0D132B',
+                            light: '#1D2A44',
+                        },
+                        rosegold: {
+                            100: '#FAF0EE',
+                            200: '#F1D1CA',
+                            300: '#E2B2A6',
+                            400: '#D29082',
+                            500: '#C07262',
+                        },
+                        gold: {
+                            light: '#F5E6C8',
+                            DEFAULT: '#D4AF37',
+                            dark: '#AA820A'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                        luxury: ['"Alex Brush"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for Webkit / Mobile performance */
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #05070F;
+        }
+        
+        /* Glassmorphism custom definition */
+        .glass-card {
+            background: rgba(13, 19, 43, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 178, 166, 0.15);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Floating orbs keyframes */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-30px) scale(1.08); }
+        }
+        .animate-float {
+            animation: float 10s ease-in-out infinite;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Smooth scroll-reveal styles */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom focus rings and form enhancements */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #E2B2A6 !important;
+            box-shadow: 0 0 15px rgba(226, 178, 166, 0.3);
+        }
+
+        /* Animated border for buttons */
+        .btn-gold-border {
+            position: relative;
+            background: linear-gradient(90deg, #D4AF37, #E2B2A6);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+        .btn-gold-border:active {
+            transform: scale(0.96);
+            background-position: right center;
+        }
+
+        /* -------------------------------------------------------------
+           ENVELOPE GATE (Sobre de bienvenida)
+        ------------------------------------------------------------- */
+        #envelope-scene {
+            perspective: 1400px;
+            animation: envelope-breathe 4.5s ease-in-out infinite;
+            transition: transform 0.25s ease;
+        }
+        #envelope-scene.is-pressed {
+            transform: scale(0.97);
+        }
+        #envelope-scene.is-opening {
+            animation-play-state: paused;
+        }
+        @keyframes envelope-breathe {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        #envelope-flap {
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transform: rotateX(0deg);
+            transform-origin: top center;
+            transition: transform 1.15s cubic-bezier(0.65, 0, 0.35, 1), filter 1.15s ease;
+        }
+        #envelope-flap.is-open {
+            transform: rotateX(-172deg);
+            filter: brightness(0.8);
+        }
+
+        /* Brillo que recorre la solapa, invitando a tocar */
+        #flap-sheen {
+            background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.16) 45%, transparent 65%);
+            transform: translateX(-120%);
+            animation: sheen-sweep 5s ease-in-out infinite;
+        }
+        @keyframes sheen-sweep {
+            0%, 45% { transform: translateX(-120%); }
+            65%, 100% { transform: translateX(120%); }
+        }
+
+        /* Lacre: anillo pulsante invitando a tocar */
+        .seal-pulse-ring {
+            animation: seal-pulse 2.6s ease-out infinite;
+        }
+        @keyframes seal-pulse {
+            0% { transform: scale(1); opacity: 0.55; }
+            70%, 100% { transform: scale(1.75); opacity: 0; }
+        }
+
+        /* Lacre partiéndose en dos mitades */
+        #seal-left, #seal-right {
+            transition: transform 0.65s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease 0.1s;
+        }
+        #wax-seal.is-open #seal-left {
+            transform: translate(-9px, 16px) rotate(-22deg);
+            opacity: 0;
+        }
+        #wax-seal.is-open #seal-right {
+            transform: translate(9px, 16px) rotate(22deg);
+            opacity: 0;
+        }
+        #wax-seal .seal-label,
+        #wax-seal .seal-pulse-ring {
+            transition: opacity 0.35s ease;
+        }
+        #wax-seal.is-open .seal-label,
+        #wax-seal.is-open .seal-pulse-ring {
+            opacity: 0;
+        }
+
+        /* Carta que se desliza fuera del sobre ANIMACION CARTA */
+        #letter-card {
+            opacity: 0;
+         /* transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease; */
+            transition: transform 5.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+        }
+        #letter-card.is-open {
+            transform: translate(-50%, -130px) scale(3.04);
+            opacity: 1;
+            filter: blur(0.2px);
+        }
+
+        #envelope-gate {
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        #envelope-gate.is-hidden {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.98);
+            pointer-events: none;
+        }
+
+        /* Dress-code tooltip */
+        #dress-tooltip {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        /* Respeta a quienes prefieren menos movimiento en pantalla */
+        @media (prefers-reduced-motion: reduce) {
+            #envelope-scene { animation: none !important; }
+            #flap-sheen { animation: none !important; opacity: 0; }
+            .seal-pulse-ring { animation: none !important; opacity: 0; }
+            .animate-float, .animate-bounce { animation: none !important; }
+            * { scroll-behavior: auto !important; }
+        }
+
+        /* Success screen celebration */
+        .confetti {
+            position: absolute;
+             top: -35px;
+            width: 8px;
+            height: 8px;
+            background-color: #E2B2A6;
+            border-radius: 60%;
+            animation: fall 4s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center min-h-screen text-slate-100 font-sans antialiased overflow-x-hidden overflow-hidden selection:bg-rosegold-300 selection:text-navy-dark">
+
+    <!-- Mobile Screen Wrapper (Restricting desktop view to elegant mobile preview) -->
+    <div class="relative w-full max-w-[450px] min-h-screen bg-navy-dark shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-x-hidden no-scrollbar flex flex-col justify-start">
+        
+        <!-- ENVELOPE GATE: Pantalla inicial del sobre cerrado -->
+        <div id="envelope-gate" class="fixed inset-0 max-w-[450px] mx-auto z-50 flex flex-col items-center justify-center bg-navy-dark px-6 text-center select-none">
+            <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                <div class="absolute top-[15%] -left-16 w-[260px] h-[260px] rounded-full bg-rosegold-500/10 blur-[100px] animate-float"></div>
+                <div class="absolute bottom-[15%] -right-16 w-[260px] h-[260px] rounded-full bg-gold/10 blur-[100px] animate-float" style="animation-delay:-4s;"></div>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center gap-8">
+                <span class="text-[9px] tracking-[0.35em] text-rosegold-300/60 uppercase font-medium">Tienes una invitación</span>
+
+                <div id="envelope-scene" class="relative w-[240px] h-[168px] cursor-pointer">
+                    <!-- Sombra flotante debajo del sobre -->
+                    <div class="absolute -bottom-7 left-1/2 -translate-x-1/2 w-[80%] h-4 bg-black/50 blur-lg rounded-full"></div>
+
+                    <!-- Cuerpo del sobre -->
+                    <div class="absolute inset-0 rounded-[3px] overflow-hidden shadow-[0_25px_55px_-15px_rgba(0,0,0,0.75)]">
+                        <div class="absolute inset-0" style="background: linear-gradient(165deg, #182a52, #0B132B 65%);"></div>
+
+                        <!-- Pliegue lateral izquierdo -->
+                        <div class="absolute inset-y-0 left-0 w-1/2" style="clip-path: polygon(0 0, 100% 50%, 0 100%); background: linear-gradient(115deg, rgba(0,0,0,0.30), rgba(255,255,255,0.02));"></div>
+                        <!-- Pliegue lateral derecho -->
+                        <div class="absolute inset-y-0 right-0 w-1/2" style="clip-path: polygon(100% 0, 0 50%, 100% 100%); background: linear-gradient(245deg, rgba(0,0,0,0.30), rgba(255,255,255,0.02));"></div>
+                        <!-- Pliegue inferior -->
+                        <div class="absolute inset-x-0 bottom-0 h-full" style="clip-path: polygon(0 100%, 50% 38%, 100% 100%); background: linear-gradient(160deg, rgba(212,175,55,0.10), rgba(226,178,166,0.05));"></div>
+
+                        <!-- Borde doble dorado (detalle de lujo) -->
+                        <div class="absolute inset-[3px] border border-gold/25 rounded-[2px] pointer-events-none"></div>
+                        <div class="absolute inset-0 border border-gold/10 rounded-[3px] pointer-events-none"></div>
+                    </div>
+
+                    <!-- Carta que se asoma y luego se desliza hacia afuera -->
+                    <div id="letter-card" class="absolute left-1/2 -translate-x-1/2 top-[24px] w-[80%] h-[120px] rounded-[2px] z-10 flex items-center justify-center gap-2"
+                         style="background: linear-gradient(180deg,#FBF6EC,#F1E7D4); box-shadow: 0 4px 10px rgba(0,0,0,0.35); border: 1px solid rgba(212,175,55,0.4);">
+                        <span class="font-serif italic text-[13px] tracking-[0.15em]" style="color:#3a2f1d;">B</span>
+                        <span class="font-serif text-[11px]" style="color:#AA820A;">&</span>
+                        <span class="font-serif italic text-[13px] tracking-[0.15em]" style="color:#3a2f1d;">K</span>
+                    </div>
+
+                    <!-- Solapa superior (triángulo) con brillo -->
+                    <div id="envelope-flap" class="absolute top-0 left-0 w-full h-[88px] z-20 overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 50% 100%); background: linear-gradient(150deg, #1c2f5c, #0B132B 70%); border-bottom: 1px solid rgba(212,175,55,0.3);">
+                        <div id="flap-sheen" class="absolute inset-0"></div>
+                    </div>
+
+                    <!-- Lacre rojo con iniciales, partido en dos mitades al abrir -->
+                    <div id="wax-seal" class="absolute left-1/2 top-[88px] w-[54px] h-[54px] z-30" style="transform: translate(-50%, -50%);">
+                        <span class="seal-pulse-ring absolute inset-0 rounded-full border-2 border-rosegold-200/50"></span>
+                        <div id="seal-left" class="absolute inset-0 rounded-full" style="clip-path: inset(0 50% 0 0); background: radial-gradient(circle at 34% 30%, #d24f42, #7a1712 80%); box-shadow: 0 6px 14px rgba(0,0,0,0.45);"></div>
+                        <div id="seal-right" class="absolute inset-0 rounded-full" style="clip-path: inset(0 0 0 50%); background: radial-gradient(circle at 34% 30%, #d24f42, #7a1712 80%); box-shadow: 0 6px 14px rgba(0,0,0,0.45);"></div>
+                        <span class="seal-label absolute inset-0 flex items-center justify-center font-serif text-white text-base tracking-wide" style="text-shadow: 0 1px 1px rgba(0,0,0,0.4);">B&K</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center gap-2">
+                    <p class="text-[10px] tracking-widest text-slate-400 uppercase">Toca el sobre o desliza para abrir</p>
+                    <div class="text-rosegold-300/60 animate-bounce">
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Luxury Ambient Background Orbs -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+            <div class="absolute top-[10%] -left-20 w-[300px] h-[300px] rounded-full bg-rosegold-500/10 blur-[100px] animate-float"></div>
+            <div class="absolute top-[45%] -right-20 w-[350px] h-[350px] rounded-full bg-gold/10 blur-[120px] animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute bottom-[10%] left-[-100px] w-[250px] h-[250px] rounded-full bg-rosegold-400/10 blur-[90px] animate-float" style="animation-delay: -6s;"></div>
+        </div>
+
+        <!-- CONTENT OVERLAY (Safe Zone) -->
+        <div class="relative z-10 w-full flex flex-col">
+
+            <!-- SECTION 1: HERO (PORTADA) -->
+            <section id="hero" class="relative min-h-screen w-full flex flex-col justify-between items-center px-6 py-16 text-center select-none transition-all duration-700 ease-out">
+                
+                <!-- Luxury Logo Monogram -->
+                <div class="mt-4 flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full border border-rosegold-300/30 flex items-center justify-center font-serif text-2xl text-rosegold-300 backdrop-blur-md shadow-[0_0_15px_rgba(226,178,166,0.15)] animate-pulse">
+                        B&K
+                    </div>
+                   <!--
+                      <span class="text-[9px] tracking-[0.3em] text-rosegold-300/60 uppercase mt-3 font-medium"> Con la bendición de Dios y de nuestras familias 
+                        Tenemos el honor de invitarlos a celebrar nuestra boda.</span>  
+                    <h3 class="font-serif text-3xl text-white mt-1">Con la bendición de Dios y de nuestras familias 
+                        Tenemos el honor de invitarlos a celebrar nuestra boda.</h3>-->
+                        <h1 class="font-serif italic text-lg text-rosegold-200/70 leading-7 max-w-[460px] mx-auto mt-2">Con la bendición de Dios, <br> tenemos el honor de invitarlos <br>a celebrar Nuestra Boda.</h1>
+                      
+                </div>
+
+                <!-- Couples Name and Title -->
+                <div class="my-auto space-y-6">
+                    <div class="space-y-2">
+                        <h1 class="font-serif text-4xl font-light tracking-wide text-white leading-relaxed">
+                            Bryan <br>
+                            <p class="font-serif text-lg tracking-[0.2em] text-rosegold-200/80 italic mt-1">Martínez Mejia</p>
+                            <span class="text-rosegold-300 text-3xl italic font-serif">&</span><br>
+                            Katherin
+                        </h1>
+                        <p class="font-serif text-lg tracking-[0.2em] text-rosegold-200/80 italic mt-1">Morales Arcila</p>
+                    </div>
+                    
+                    <div class="w-12 h-[1px] bg-gradient-to-r from-transparent via-rosegold-300 to-transparent mx-auto my-4"></div>
+
+                    <!-- Date Tag -->
+                    <div class="space-y-1">
+                        <p class="font-sans text-sm tracking-[0.25em] text-gold/90 uppercase font-light">14 . Noviembre . 2026</p>
+                        <p class="text-[10px] tracking-widest text-slate-400/80 uppercase">Belalcázar, Caldas</p>
+                    </div>
+                </div>
+
+                <!-- Pulsing Scroll indicator -->
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-[9px] tracking-[0.4em] text-rosegold-300/50 uppercase font-light">Desliza para descubrir</span>
+                    <div class="text-rosegold-300/60 animate-bounce mt-1">
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- SECTION 2: NUESTRA HISTORIA (Scroll-driven Word Reveal) -->
+            <section id="historia" class="min-h-screen w-full flex flex-col justify-center px-8 py-20 relative">
+                <div class="text-center mb-12 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">El Destino</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Nuestra Historia</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+                </div>
+
+                <!-- Word-by-word reveal target paragraph -->
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden">
+                    <!-- Elegant background quote marks -->
+                    <span class="absolute top-2 left-4 text-7xl font-serif text-rosegold-300/5 select-none">“</span>
+                    
+                    <p id="story-text" class="text-center font-serif text-lg leading-relaxed text-slate-300/90 italic tracking-wide">
+                        Hay momentos en la vida que son mágicos y personas que se convierten en nuestro hogar. 
+                        Desde el primer día supimos que queríamos escribir un siempre juntos. 
+                        Hoy decidimos dar el paso más importante de nuestras vidas, uniendo nuestros caminos en un solo destino. 
+                        Queremos celebrar este inicio eterno junto a ti.
+                    </p>
+
+                    <span class="absolute bottom-[-20px] right-4 text-7xl font-serif text-rosegold-300/5 select-none">”</span>
+                </div>
+
+                <div class="mt-8 text-center reveal-element">
+                    <p class="font-sans text-xs tracking-widest text-rosegold-300/70 font-light italic">"El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección."</p>
+                </div>
+            </section>
+
+
+  <!-- SECTION 4: DETALLES DEL EVENTO -->
+            <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
+                <div class="text-center mb-10 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">La Celebración</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Detalles de la Boda</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+                </div>
+
+                <!-- Ceremony Elegant Card -->
+                <div class="glass-card rounded-3xl p-8 relative space-y-8 overflow-hidden reveal-element">
+                    <!-- Icon Header -->
+                    <div class="flex justify-center">
+                        <div class="p-4 rounded-full bg-rosegold-300/5 border border-rosegold-300/20 text-rosegold-300">
+                            <i data-lucide="church" class="w-8 h-8"></i>
+                        </div>
+                    </div>
+
+                    <!-- Title & Venue -->
+                    <div class="text-center space-y-2">
+                        <h3 class="font-serif text-2xl text-white tracking-wide font-light">La Ceremonia</h3>
+                        <p class="font-serif text-rosegold-300 text-lg italic">Parroquia La Inmaculada</p>
+                        <p class="text-xs text-slate-400">Belalcázar, Caldas</p>
+                    </div>
+
+                    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-rosegold-300/20 to-transparent"></div>
+
+                    <!-- Event Logistics -->
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="space-y-1">
+                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium">Hora</span>
+                            <p class="text-sm font-light text-slate-200 mt-1">04:00 PM</p>
+                        </div>
+                         
+                        <!-- Tooltip Interactivo para Vestimenta -->
+                        <div class="space-y-1 cursor-pointer group relative" onclick="showDressCodeAlert()">
+                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium flex justify-center items-center gap-1">
+                                Vestimenta
+                                <i data-lucide="info" class="w-3 h-3 text-rosegold-400 group-hover:animate-pulse"></i>
+                            </span>
+                            <p class="text-sm font-light text-slate-200 mt-1 underline decoration-dashed decoration-rosegold-300/50 underline-offset-4">Gala / Formal</p>
+                        </div>
+                    </div>
+
+                    <!-- Location CTA Button -->
+                    <div class="pt-4">
+                        <a href="https://maps.app.goo.gl/CxwR12ZooaeQFiVR8" 
+                           target="_blank" 
+                           class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                            Ver Ubicación
+                        </a>
+                    </div>
+                </div>
+
+                
+
+<!-- SECTION 3: FECHA (Calendario interactivo + Cuenta Regresiva) -->
+            <section class="w-full px-6 py-12 flex flex-col items-center">
+                <div class="text-center mb-6 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Guarda la Fecha</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Fecha</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+                </div>
+
+                <div class="w-full glass-card rounded-3xl p-6 text-center reveal-element">
+
+                    <!-- Calendario interactivo -->
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <span class="font-serif text-lg tracking-widest text-white">Noviembre</span>
+                        <span class="w-1 h-1 rounded-full bg-rosegold-300/50"></span>
+                        <span class="font-sans text-sm tracking-widest text-rosegold-300/80">2026</span>
+                    </div>
+
+                    <div class="grid grid-cols-7 gap-y-2 text-center mb-1">
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">D</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">L</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">M</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">M</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">J</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">V</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">S</span>
+                    </div>
+
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-y-2 text-center place-items-center"></div>
+
+                    <div class="w-10 h-[1px] bg-rosegold-300/20 mx-auto my-5"></div>
+
+                    <!-- Faltan X días -->
+                    <div class="mb-5">
+                    <!--    <span id="days-until-number" class="font-serif text-5xl text-transparent bg-clip-text bg-gradient-to-r from-gold to-rosegold-300 font-semibold">00</span>-->
+                     <!--   <p class="text-[10px] tracking-[0.25em] text-slate-400 uppercase mt-1">Días para nuestra boda</p>-->
+                    </div>
+
+                    <h3 class="font-serif text-lg tracking-wider text-rosegold-300 font-light mb-3">Cuenta Regresiva</h3>
+
+                    <!-- Countdown Display Grid -->
+                    <div id="countdown-container" class="grid grid-cols-4 gap-3 text-center">
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="days" class="block font-serif text-2xl text-white font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Días</span>
+                        </div>
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="hours" class="block font-serif text-2xl text-white font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Horas</span>
+                        </div>
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="minutes" class="block font-serif text-2xl text-white font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Mins</span>
+                        </div>
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="seconds" class="block font-serif text-2xl text-rose-300/90 font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Segs</span>
+                        </div>
+                    </div>
+                    <p class="text-[10px] tracking-widest text-slate-400 uppercase mt-4 mb-5">Para nuestro gran día</p>
+
+                    <!-- Agregar al calendario del celular -->
+                    <a id="add-to-calendar" href="#" download="Boda-Bryan-y-Katherin.ics"
+                       class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
+                        <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+                        Agregar al Calendario
+                    </a>
+                </div>
+            </section>
+
+<!-- Elegant Card for Details / Souvenir (Lluvia de sobres) icono regalo -->
+                <div class="glass-card rounded-3xl p-6 mt-6 relative space-y-4 reveal-element">
+                    <div class="flex items-center gap-4">
+                        <div class="p-5 rounded-full bg-gold/5 border border-gold/20 text-gold">
+                            <i data-lucide="gift" class="w-10 h-10"></i>
+                        </div>
+                        <div>
+                         <!--    <h4 class="font-serif text-lg text-white font-light">LS</h4>-->
+                            <p class="text-xs text-slate-400 mt-0.5">Tu presencia es nuestro mayor regalo, sin embargo, si deseas tener un detalle con nosotros, lo recibiremos con mucho cariño y gratitud.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- SECTION 5: RSVP (CONFIRMACIÓN) -->
+            <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
+                <div class="text-center mb-8 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Confirmación</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Acompáñanos</h2>
+                    <p class="text-xs text-slate-400 mt-2">Agradecemos confirmar tu asistencia antes del <br> 15 de Octubre de 2026</p>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-4"></div>
+                </div>
+
+                <!-- RSVP Form Card -->
+                <div class="glass-card rounded-3xl p-8 relative overflow-hidden reveal-element">
+                    <form id="rsvp-form" class="space-y-6">
+                        
+                        <!-- Input Name -->
+                        <div class="space-y-2">
+                            <label for="guest-name" class="block text-[10px] tracking-widest text-rosegold-300 uppercase font-medium">Nombre Completo</label>
+                            <input type="text" id="guest-name" required placeholder="Escribe tu nombre y apellido"
+                                class="w-full bg-navy-dark/80 border border-rosegold-300/20 text-slate-200 rounded-xl px-4 py-3 text-sm transition-all placeholder-slate-500 font-light">
+                        </div>
+
+                        <!-- Radio Attendance Cards -->
+                        <div class="space-y-2">
+                            <span class="block text-[10px] tracking-widest text-rosegold-300 uppercase font-medium mb-3">¿Asistirás al evento?</span>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="attendance" value="yes" checked class="sr-only peer">
+                                    <div class="peer-checked:bg-rosegold-500/20 peer-checked:border-rosegold-300 border border-slate-700/50 rounded-xl p-3 text-center transition-all duration-300 hover:bg-slate-800/40 bg-navy-dark/50">
+                                        <span class="block text-xs font-medium text-slate-300 peer-checked:text-white">Sí, Asistiré</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="attendance" value="no" class="sr-only peer">
+                                    <div class="peer-checked:bg-rosegold-500/20 peer-checked:border-rosegold-300 border border-slate-700/50 rounded-xl p-3 text-center transition-all duration-300 hover:bg-slate-800/40 bg-navy-dark/50">
+                                        <span class="block text-xs font-medium text-slate-300 peer-checked:text-white">No podré</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Special Message Area -->
+                        <div class="space-y-2">
+                            <label for="guest-message" class="block text-[10px] tracking-widest text-rosegold-300 uppercase font-medium">Mensaje Especial</label>
+                            <textarea id="guest-message" rows="3" placeholder="Déjanos unas lindas palabras..."
+                                class="w-full bg-navy-dark/80 border border-rosegold-300/20 text-slate-200 rounded-xl px-4 py-3 text-sm transition-all placeholder-slate-500 font-light resize-none"></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-2">
+                            <button type="submit" id="submit-btn" 
+                                class="btn-gold-border text-navy-dark text-xs font-bold tracking-widest uppercase py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 w-full transition-transform">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Confirmar Asistencia
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Success State (hidden initially) -->
+                    <div id="success-screen" class="hidden flex-col bg-navy-medium flex flex-col justify-center items-center p-8 text-center space-y-6 z-20">
+                        <div id="success-icon-wrap" class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 animate-scale-up">
+                            <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 id="success-title" class="font-serif text-2xl text-white">¡Confirmación Recibida!</h3>
+                            <p id="success-message" class="text-xs text-slate-300 leading-relaxed max-w-xs">Tu respuesta ha sido registrada exitosamente. Gracias por formar parte de este día tan especial para nosotros.</p>
+                        </div>
+                        <p class="font-serif text-rosegold-300 italic text-lg">- Bryan & Katherin -</p>
+                        <button id="edit-rsvp-btn" type="button" class="text-[10px] tracking-widest text-rosegold-300/60 uppercase underline underline-offset-4 mt-2">¿Deseas actualizar tu respuesta?</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER MONOGRAM -->
+            <footer class="py-16 text-center border-t border-slate-900 bg-navy-dark/50">
+                <p class="font-serif text-2xl text-rosegold-300">B & K</p>
+                <p class="text-[9px] tracking-[0.3em] text-slate-500 uppercase mt-2">14 de Noviembre de 2026</p>
+                <p class="text-[8px] text-slate-600 uppercase mt-8 tracking-widest">Creado con amor • Por el novio</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT SECTION -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        /* -------------------------------------------------------------
+           1. HERO FADE & SCALE ON SCROLL (Scroll-driven Animation)
+        ------------------------------------------------------------- */
+        const hero = document.getElementById('hero');
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const heroHeight = hero.offsetHeight;
+            if (scrollPos <= heroHeight) {
+                // Calculation for opacity & subtle scaling out
+                const opacity = 1 - (scrollPos / heroHeight) * 1.6;
+                const scale = 1 - (scrollPos / heroHeight) * 0.12;
+                
+                hero.style.opacity = Math.max(opacity, 0);
+                hero.style.transform = `scale(${Math.max(scale, 0.88)})`;
+            }
+        });
+
+        /* -------------------------------------------------------------
+           2. WORD-BY-WORD SCROLL-REVEAL FOR "LA HISTORIA"
+        ------------------------------------------------------------- */
+        const textContainer = document.getElementById('story-text');
+        const textContent = textContainer.innerText.trim();
+        textContainer.innerHTML = ''; // Clear container
+
+        // Map and wrap every word inside span
+        const wordSpans = textContent.split(/\s+/).map(word => {
+            const span = document.createElement('span');
+            span.className = 'reveal-word transition-all duration-500 text-white/20 inline-block mr-1.5 transform translate-y-0';
+            span.innerText = word;
+            textContainer.appendChild(span);
+            return span;
+        });
+
+        function handleWordReveal() {
+            const rect = textContainer.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            
+            // Defining trigger boundaries
+            const startTrigger = viewHeight * 0.85;
+            const endTrigger = viewHeight * 0.20;
+            
+            // Linear progression calculation
+            const progress = (startTrigger - rect.top) / (startTrigger - endTrigger);
+            const clampedProgress = Math.min(Math.max(progress, 0), 1);
+            
+            // Calculate how many words should be illuminated
+            const activeThreshold = Math.floor(clampedProgress * wordSpans.length);
+            
+            wordSpans.forEach((span, idx) => {
+                if (idx < activeThreshold) {
+                    span.classList.remove('text-white/20');
+                    span.classList.add('text-rosegold-300');
+                    span.style.textShadow = '0 0 8px rgba(226, 178, 166, 0.25)';
+                } else {
+                    span.classList.add('text-white/20');
+                    span.classList.remove('text-rosegold-300');
+                    span.style.textShadow = 'none';
+                }
+            });
+        }
+        window.addEventListener('scroll', handleWordReveal);
+        window.addEventListener('resize', handleWordReveal);
+        handleWordReveal(); // Execute once on start
+
+        /* -------------------------------------------------------------
+           3. INTERSECTION OBSERVER FOR TRANSITIONS
+        ------------------------------------------------------------- */
+        const revealElements = document.querySelectorAll('.reveal-element');
+        const observerOptions = {
+            root: null, // Viewport
+            threshold: 0.1, // Trigger when 10% is visible
+            rootMargin: '0px 0px -50px 0px' // Margins
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Animate once
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => {
+            el.classList.add('reveal-element');
+            revealObserver.observe(el);
+        });
+
+        /* -------------------------------------------------------------
+           4. COUNTDOWN TIMER CONFIGURATION (TARGET: NOV 14, 2026)
+        ------------------------------------------------------------- */
+        const targetDate = new Date("Nov 14, 2026 16:00:00").getTime();
+        const daysUntilNumber = document.getElementById('days-until-number');
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown-container").innerHTML = `
+                    <div class="col-span-4 py-4 font-serif text-xl text-gold-light italic">
+                        ¡Llegó el gran día! Nos estamos uniendo en matrimonio.
+                    </div>
+                `;
+                if (daysUntilNumber) daysUntilNumber.innerText = '¡Hoy!';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            // Número grande de "días restantes" que acompaña al calendario
+            if (daysUntilNumber) daysUntilNumber.innerText = days.toString().padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Execute immediately
+
+
+  /* -------------------------------------------------------------
+           5. ALERTA DE CÓDIGO DE VESTIMENTA (SweetAlert2)
+        ------------------------------------------------------------- */
+        function showDressCodeAlert() {
+            Swal.fire({
+                title: '<span class="font-serif text-2xl" style="color: #070B19;">Código de Vestimenta</span>',
+                html: '<p style="color: #475569; font-size: 0.875rem; font-family: Montserrat, sans-serif;">Agradecemos tu comprensión al <b>no usar prendas de color azul o blanco</b>, ya que estos tonos están reservados exclusivamente para los trajes de los novios.</p>',
+                icon: 'info',
+                iconColor: '#D29082',
+                confirmButtonText: '¡Entendido!',
+                confirmButtonColor: '#C07262',
+                background: '#FAF0EE',
+                backdrop: `rgba(7, 11, 25, 0.8)`,
+                customClass: {
+                    popup: 'rounded-2xl'
+                }
+            });
+        }
+
+
+
+
+        /* -------------------------------------------------------------
+           4.1 CALENDARIO INTERACTIVO (Noviembre 2026, con el 14 resaltado)
+        ------------------------------------------------------------- */
+        (function buildCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            if (!grid) return;
+
+            const year = 2026;
+            const month = 10; // Noviembre (0-indexado)
+            const weddingDay = 14;
+            const firstWeekday = new Date(year, month, 1).getDay(); // 0 = Domingo
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            let html = '';
+            for (let i = 0; i < firstWeekday; i++) {
+                html += `<span class="w-8 h-8"></span>`;
+            }
+            for (let d = 1; d <= daysInMonth; d++) {
+                if (d === weddingDay) {
+                    html += `
+                        <span class="relative w-8 h-8 flex items-center justify-center">
+                            <span class="absolute inset-0 rounded-full border-2 border-gold/50 seal-pulse-ring"></span>
+                            <span class="relative w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-navy-dark shadow-[0_0_14px_rgba(212,175,55,0.55)]" style="background: linear-gradient(135deg,#F5E6C8,#D4AF37);">
+                                ${d}
+                            </span>
+                        </span>`;
+                } else {
+                    html += `
+                        <span class="w-8 h-8 flex items-center justify-center text-xs font-light text-slate-400/80">
+                            ${d}
+                        </span>`;
+                }
+            }
+            grid.innerHTML = html;
+        })();
+
+        /* -------------------------------------------------------------
+           4.2 AGREGAR AL CALENDARIO DEL CELULAR (archivo .ics descargable)
+        ------------------------------------------------------------- */
+        (function setupAddToCalendar() {
+            const link = document.getElementById('add-to-calendar');
+            if (!link) return;
+
+            const icsContent = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Bryan & Katherin//Boda//ES',
+                'CALSCALE:GREGORIAN',
+                'BEGIN:VEVENT',
+                'UID:boda-bryan-katherin-14112026@invitacion',
+                'DTSTAMP:20260101T000000Z',
+                'DTSTART:20261114T210000Z',
+                'DTEND:20261115T020000Z',
+                'SUMMARY:Boda de Bryan & Katherin',
+                'DESCRIPTION:Ceremonia religiosa en la Parroquia La Inmaculada\\, Belalcázar\\, Caldas.',
+                'LOCATION:Parroquia La Inmaculada\\, Belalcázar\\, Caldas',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            link.href = URL.createObjectURL(blob);
+        })();
+
+        /* -------------------------------------------------------------
+           5. RSVP FORM HANDLING (Sí / No + anti doble-envío + confetti)
+        ------------------------------------------------------------- */
+        const rsvpForm = document.getElementById('rsvp-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const successScreen = document.getElementById('success-screen');
+        const successIconWrap = document.getElementById('success-icon-wrap');
+        const successTitle = document.getElementById('success-title');
+        const successMessage = document.getElementById('success-message');
+        const editRsvpBtn = document.getElementById('edit-rsvp-btn');
+
+        // Clave usada para recordar en ESTE dispositivo/navegador que ya se confirmó.
+        // NOTA: este formulario no envía los datos a ningún servidor todavía; solo
+        // simula el registro. Para guardar de verdad las respuestas de tus invitados
+        // (y evitar duplicados reales entre distintas personas) te recomendamos
+        // conectarlo a Google Forms/Sheets o a un servicio como Formspree — con
+        // gusto te ayudo a integrarlo.
+        const RSVP_STORAGE_KEY = 'bk_wedding_rsvp_2026';
+
+        function renderSuccess(attendance) {
+            if (attendance === 'no') {
+                successIconWrap.className = 'w-16 h-16 rounded-full bg-rosegold-400/10 border border-rosegold-300/30 flex items-center justify-center text-rosegold-300 animate-scale-up';
+                successIconWrap.innerHTML = '<i data-lucide="heart-handshake" class="w-9 h-9"></i>';
+                successTitle.textContent = 'Gracias por avisarnos';
+                successMessage.textContent = 'Gracias por confirmar. Nos hubiera encantado contar con tu presencia, pero entendemos y te llevaremos en el corazón ese día.';
+            } else {
+                successIconWrap.className = 'w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 animate-scale-up';
+                successIconWrap.innerHTML = '<i data-lucide="check-circle-2" class="w-10 h-10"></i>';
+                successTitle.textContent = '¡Confirmación Recibida!';
+                successMessage.textContent = 'Tu respuesta ha sido registrada exitosamente. Gracias por formar parte de este día tan especial para nosotros.';
+            }
+            lucide.createIcons();
+            rsvpForm.classList.add('hidden');
+            successScreen.classList.remove('hidden');
+            successScreen.classList.add('animate-fade-in');
+        }
+
+        // Si ya se confirmó antes desde este mismo dispositivo, mostrar el estado guardado
+        (function checkPriorSubmission() {
+            const saved = localStorage.getItem(RSVP_STORAGE_KEY);
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    renderSuccess(data.attendance);
+                } catch (e) { /* si falla, se deja el formulario visible */ }
+            }
+        })();
+
+        rsvpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const guestName = document.getElementById('guest-name').value.trim();
+            const guestMessage = document.getElementById('guest-message').value.trim();
+            
+            // --- INICIO DE VALIDACIÓN DE SEGURIDAD ---
+         // 1. Regex: Solo letras (mayúsculas, minúsculas, acentos, ñ, diéresis) y espacios.
+            // Esto bloquea automáticamente números (0-9) y símbolos (!@#$%^&*etc)
+            const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/;
+            
+            if (!nameRegex.test(guestName)) {
+                Swal.fire({
+                    title: '<span class="font-serif text-2xl text-navy-dark">Formato inválido</span>',
+                    html: '<p class="text-sm text-slate-600">El nombre solo debe contener letras. No se permiten números ni caracteres especiales.</p>',
+                    icon: 'error',
+                    iconColor: '#C07262',
+                    confirmButtonText: 'Corregir',
+                    confirmButtonColor: '#C07262',
+                    background: '#FAF0EE',
+                    customClass: { popup: 'rounded-2xl' }
+                });
+                return; // Detiene el envío
+            }
+
+            // 2. Validación de cantidad de palabras y longitud
+            const nameWords = guestName.split(/\s+/); // Divide por espacios
+            
+            // UX Tip: Lo ajusté a 3 letras por palabra. Si dejas 4, bloquearás a invitados reales 
+            // como "Ana Rey", "Leo Roa" o "Luz Paz". Si aún así quieres 4, cambia el 3 por un 4.
+            const hasEnoughWords = nameWords.length >= 2;
+            const wordsAreLongEnough = nameWords.every(word => word.length >= 3);
+
+            if (!hasEnoughWords || !wordsAreLongEnough) {
+                Swal.fire({
+                    title: '<span class="font-serif text-2xl text-navy-dark">Nombre incompleto</span>',
+                    html: '<p class="text-sm text-slate-600">Por favor ingresa tu nombre y apellido reales (mínimo 2 palabras, sin abreviaturas).</p>',
+                    icon: 'warning',
+                    iconColor: '#D29082',
+                    confirmButtonText: 'Entendido',
+                    confirmButtonColor: '#C07262',
+                    background: '#FAF0EE',
+                    customClass: { popup: 'rounded-2xl' }
+                });
+                return; // Detiene el envío
+            }
+            // --- FIN DE VALIDACIÓN ---
+
+
+            // Visual loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-navy-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Registrando...
+            `;
+
+            // Mocking dynamic delay (1.5 segundos) — reemplazar por el envío real (fetch a tu backend/Formspree/Sheets)
+            /*setTimeout(() => {
+                localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify({
+                    attendance, guestName, guestMessage, ts: Date.now()
+                }));
+
+                renderSuccess(attendance);
+
+                if (attendance !== 'no') {
+                    createConfetti();
+                }
+            }, 1500);*/
+            const urlAppScript = 'https://script.google.com/macros/s/AKfycbxTK6A5vL4TXRMTf2oRUeRttWtAXY7nTgY5uirVGclO7poCjtMoVIM80n8TxMK-I4FZ/exec';
+
+            const payload = {
+                nombre: guestName,
+                asistencia: attendance,
+                mensaje: guestMessage
+            };
+
+            fetch(urlAppScript, {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                // Usamos text/plain para evitar errores de CORS con preflight options en Apps Script
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify({
+                        attendance, guestName, guestMessage, ts: Date.now()
+                    }));
+
+                    renderSuccess(attendance);
+
+                    if (attendance !== 'no') {
+                        createConfetti();
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error al registrar:', error);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> Confirmar Asistencia';
+                alert("Hubo un error al enviar la confirmación. Por favor intenta de nuevo.");
+            });
+        });
+
+        // Permitir corregir/actualizar la respuesta ya guardada
+        editRsvpBtn.addEventListener('click', function() {
+            localStorage.removeItem(RSVP_STORAGE_KEY);
+            successScreen.classList.add('hidden');
+            successScreen.classList.remove('animate-fade-in');
+            rsvpForm.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> Confirmar Asistencia';
+            lucide.createIcons();
+        });
+
+        function createConfetti() {
+            const colors = ['#E2B2A6', '#FAF0EE', '#D4AF37', '#885F30'];
+        
+                 // Aumenté un poco la cantidad de partículas para que la lluvia se vea más llena
+            for (let i = 0; i < 55; i++) { 
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // 1. Color y Posición horizontal aleatoria
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+
+                // 2. Tamaño aleatorio (Entre 4px y 12px)
+                const size = Math.random() * 8 + 4;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+
+                // 3. GRAVEDAD SIMULADA (La magia)
+                // Partículas de 12px (grandes) tendrán una duración de ~2.2 segundos (caen rápido).
+                // Partículas de 4px (pequeñas) tendrán una duración de ~5.4 segundos (caen lento).
+                const fallDuration = 7 - (size / 2.5); 
+                confetti.style.animationDuration = fallDuration + 's';
+
+                // 4. LLUVIA CONTINUA (Delay Negativo)
+                // Un número aleatorio entre 0 y -7 segundos. 
+                // Esto esparce las partículas por toda la pantalla antes del primer frame.
+                confetti.style.animationDelay = (Math.random() * -7) + 's';
+
+                successScreen.appendChild(confetti);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           6. SOBRE DE BIENVENIDA (abrir con el primer scroll/tap,
+              y "guardar" la carta de nuevo al volver arriba)
+        ------------------------------------------------------------- */
+        const envelopeGate = document.getElementById('envelope-gate');
+        const envelopeScene = document.getElementById('envelope-scene');
+        const envelopeFlap = document.getElementById('envelope-flap');
+        const waxSeal = document.getElementById('wax-seal');
+        const letterCard = document.getElementById('letter-card');
+
+        let envelopeIsOpen = false;
+        let envelopeAnimating = false;
+        let hasScrolledAway = false;
+
+        function lockScroll() {
+            document.documentElement.classList.add('overflow-hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+        function unlockScroll() {
+            document.documentElement.classList.remove('overflow-hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function resetContentAnimations() {
+            // Vuelve a poner en su estado inicial las tarjetas/párrafos con reveal
+            document.querySelectorAll('.reveal-element').forEach((el) => {
+                el.classList.remove('active');
+                revealObserver.observe(el);
+            });
+            // El hero y el texto palabra-por-palabra se recalculan solos
+            // en función del scrollY, así que basta con re-ejecutarlos:
+            hero.style.opacity = '';
+            hero.style.transform = '';
+            handleWordReveal();
+        }
+
+        function openEnvelope() {
+            if (envelopeIsOpen || envelopeAnimating) return;
+            envelopeAnimating = true;
+            envelopeScene.classList.add('is-opening');
+
+            // Vibración táctil sutil (si el dispositivo/navegador lo soporta)
+            if (navigator.vibrate) navigator.vibrate([12, 40, 20]);
+
+            // 1) El lacre se agrieta y se parte en dos mitades
+            waxSeal.classList.add('is-open');
+
+            // 2) La solapa se abre
+            setTimeout(() => envelopeFlap.classList.add('is-open'), 150);
+
+            // 3) La carta se desliza hacia afuera del sobre
+            setTimeout(() => letterCard.classList.add('is-open'), 550);
+
+            // 4) Todo el sobre se desvanece, dejando ver la invitación
+            setTimeout(() => envelopeGate.classList.add('is-hidden'), 1300);
+
+            setTimeout(() => {
+                envelopeGate.style.display = 'none';
+                unlockScroll();
+                envelopeIsOpen = true;
+                envelopeAnimating = false;
+                hasScrolledAway = false;
+            }, 2000);
+        }
+
+        function closeEnvelope() {
+            if (envelopeAnimating) return;
+            envelopeAnimating = true;
+
+            window.scrollTo(0, 0);
+            resetContentAnimations();
+
+            envelopeGate.style.display = 'flex';
+            // Forzar reflow antes de quitar la animación de entrada
+            void envelopeGate.offsetWidth;
+            envelopeGate.classList.remove('is-hidden');
+            envelopeFlap.classList.remove('is-open');
+            waxSeal.classList.remove('is-open');
+            letterCard.classList.remove('is-open');
+            envelopeScene.classList.remove('is-opening');
+
+            lockScroll();
+            envelopeIsOpen = false;
+            hasScrolledAway = false;
+
+            setTimeout(() => { envelopeAnimating = false; }, 800);
+        }
+
+        // Feedback táctil al presionar el sobre
+        envelopeScene.addEventListener('pointerdown', () => envelopeScene.classList.add('is-pressed'));
+        ['pointerup', 'pointerleave', 'pointercancel'].forEach((evt) => {
+            envelopeScene.addEventListener(evt, () => envelopeScene.classList.remove('is-pressed'));
+        });
+
+        // Disparadores para abrir el sobre: click/tap, rueda del mouse o gesto táctil hacia abajo
+        envelopeGate.addEventListener('click', openEnvelope);
+        envelopeGate.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0) openEnvelope();
+        }, { passive: true });
+
+        let touchStartY = 0;
+        envelopeGate.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        envelopeGate.addEventListener('touchmove', (e) => {
+            if (touchStartY - e.touches[0].clientY > 12) openEnvelope();
+        }, { passive: true });
+
+        // Si el usuario baja por toda la invitación y luego regresa hasta arriba,
+        // la carta "se guarda" de nuevo en el sobre y las animaciones se reinician.
+        window.addEventListener('scroll', () => {
+            if (!envelopeIsOpen) return;
+            if (window.scrollY > 80) hasScrolledAway = true;
+            if (window.scrollY <= 2 && hasScrolledAway) {
+                closeEnvelope();
+            }
+        });
+
+        /* -------------------------------------------------------------
+           7. TOOLTIP INFORMATIVO: RESTRICCIÓN DE COLORES EN VESTIMENTA
+       
+        const dressInfoBtn = document.getElementById('dress-info-btn');
+        const dressTooltip = document.getElementById('dress-tooltip');
+
+        function showDressTooltip() {
+            dressTooltip.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                dressTooltip.classList.remove('opacity-0', 'scale-95');
+            });
+        }
+        function hideDressTooltip() {
+            dressTooltip.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => dressTooltip.classList.add('hidden'), 250);
+        }
+
+        dressInfoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (dressTooltip.classList.contains('hidden')) {
+                showDressTooltip();
+            } else {
+                hideDressTooltip();
+            }
+        });
+        document.addEventListener('click', (e) => {
+            if (!dressTooltip.classList.contains('hidden') &&
+                !dressTooltip.contains(e.target) &&
+                e.target !== dressInfoBtn) {
+                hideDressTooltip();
+            }
+        }); ------------------------------------------------------------- */
+    </script>
+</body>
+</html>
