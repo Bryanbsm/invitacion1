@@ -16,3 +16,5 @@ que sea parte de esta interfaz que salga y se oculte también
 4. fuente un poquito mas grande en toda la web, hay alguna forma de ajustar esta fuente mas automática
 
 6. validar si es posible MP3
+
+Separación entre el mensaje de invitación y los nombres
