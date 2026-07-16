@@ -1,0 +1,18 @@
+1. CODIGO DE VESTIMENTA   <!-- SECTION 5: codigo de vestimenta -->
+
+Colores recomendados
+círculos con colores 7 sugerencias de color
+Nos reservamos el blanco y el azul para los novios
+2. SOLO ADULTOS o SIN NIÑOS SOLO ADULTOS
+Aunque amamos a los mas pequeños este evento será solo para adultos
+3.  <!-- SECTION 4: DETALLES DEL EVENTO -->
+quisiera que al fondo de la parte superior del cuadro donde dice La Ceremonia Parroquia La Inmaculada Belalcázar, Caldas
+apareciera la foto de la iglesia en blur o desenficada asi de fondo
+
+
+3.sobre la carta la animacion que sale del sobre
+quiero se salgan dos anillos "anillos.png" debajo de "B&K"
+que sea parte de esta interfaz que salga y se oculte también
+4. fuente un poquito mas grande en toda la web, hay alguna forma de ajustar esta fuente mas automática
+
+6. validar si es posible MP3

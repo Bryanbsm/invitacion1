@@ -1,0 +1,188 @@
+Quiero implementar un sistema de música premium para una invitación de boda desarrollada en HTML, CSS y JavaScript, cuidando especialmente la experiencia de usuario (UX), el rendimiento y la compatibilidad con navegadores modernos.
+
+Objetivo
+
+La música debe formar parte de la experiencia emocional de la invitación sin resultar invasiva.
+
+La reproducción debe iniciar únicamente cuando el usuario interactúe con el sobre de la invitación (cumpliendo con las restricciones de autoplay de Chrome, Safari, Edge y Firefox).
+
+Flujo completo
+1. Estado inicial
+debe descargarse el archivo de audio APENAS EL USUARIO ABRE EL LINK.
+
+"Toca para abrir tu invitación"
+
+2. Apertura del sobre
+
+Cuando el usuario haga clic sobre el sobre:
+
+Comenzar inmediatamente la animación del sobre.
+Comenzar LA REPRODUCCION  del archivo MP3.
+Tan pronto el navegador permita reproducirlo, iniciar la música.
+
+La música debe comenzar exactamente al mismo tiempo que la carta empieza a salir del sobre.
+
+3. Fade In
+
+La canción NO debe iniciar de golpe.
+
+Implementar un Fade In suave de aproximadamente 2 segundos.
+
+Ejemplo:
+
+0%
+
+5%
+
+10%
+
+15%
+
+20%
+
+25%
+
+30%
+
+35%
+
+40%
+
+El volumen máximo de la primera reproducción será del 40%.
+
+Este incremento debe hacerse progresivamente.
+
+4. Primera reproducción
+
+La primera vez que se reproduce la canción:
+
+Volumen:
+
+40%
+
+No repetir todavía.
+
+Debe sonar completa mientras el usuario explora la invitación.
+
+5. Finalización
+
+Cuando termine la primera reproducción:
+
+Esperar aproximadamente 2 segundos.
+
+Reducir el volumen automáticamente al 20%.
+
+Activar el modo Loop.
+
+Continuar reproduciendo la canción indefinidamente como música de fondo.
+
+La transición debe ser imperceptible.
+
+6. Botón flotante
+
+Agregar un botón flotante elegante.
+
+Debe permanecer visible durante toda la navegación.
+
+Diseño minimalista.
+
+Iconos:
+
+🔊 cuando está sonando.
+
+🔇 cuando está silenciada.
+
+Debe recordar el estado del usuario durante toda la sesión.
+
+Si el usuario la silencia, nunca debe volver a activarse automáticamente.
+
+7. Cambio de pestaña
+
+Cuando el usuario cambie de pestaña:
+
+NO pausar la música.
+
+Solo reducir el volumen al 10%.
+
+Cuando vuelva:
+
+Restaurar suavemente el volumen al nivel anterior mediante un Fade In de 1 segundo.
+
+8. Compatibilidad móvil
+
+Debe funcionar correctamente en:
+
+Chrome Android
+
+Safari iPhone
+
+Samsung Internet
+
+Edge
+
+Firefox
+
+No utilizar técnicas que violen las políticas de reproducción automática.
+
+La reproducción siempre debe originarse desde una interacción del usuario.
+
+9. Rendimiento
+
+Optimizar el rendimiento.
+
+No cargar el archivo MP3 hasta que el usuario abra el sobre.
+
+Evitar descargas innecesarias.
+
+No bloquear el renderizado de la página.
+
+La animación del sobre debe seguir siendo completamente fluida mientras inicia la música.
+
+10. Si el archivo tarda en cargar
+
+Si el MP3 tarda unos segundos:
+
+No congelar la interfaz.
+
+Continuar normalmente con la animación del sobre.
+
+Cuando el audio esté listo comenzar la reproducción automáticamente.
+
+11. Calidad
+
+Utilizar JavaScript moderno.
+
+Código limpio.
+
+Funciones separadas.
+
+Variables descriptivas.
+
+Sin código duplicado.
+
+Comentarios únicamente donde sean realmente útiles.
+
+12. Experiencia premium
+
+Quiero que la música transmita elegancia.
+
+La experiencia debe sentirse similar a una invitación digital de lujo.
+
+No debe sorprender al usuario con un volumen alto.
+
+Todas las transiciones de volumen deben realizarse mediante Fade In y Fade Out suaves.
+
+La música debe sentirse integrada con las animaciones del sobre y de la carta.
+
+Extras (Opcionales pero recomendados)
+
+Si es posible implementar también:
+
+Fade Out cuando el usuario silencie la música.
+Fade In cuando vuelva a activarla.
+Precarga inteligente del MP3 unos milisegundos antes de que el usuario haga clic sobre el sobre (por ejemplo cuando acerque el cursor en escritorio o al tocar la pantalla en móviles), sin violar las políticas del navegador.
+Recordar mediante localStorage si el usuario dejó la música activada o desactivada, para mantener esa preferencia durante la navegación por la invitación.
+Mostrar una pequeña animación del icono de música (ondas o disco girando) mientras la canción está reproduciéndose.
+Si la música falla al cargar, la invitación debe seguir funcionando normalmente sin mostrar errores al usuario.
+
+Con este comportamiento obtendrás una experiencia muy refinada: la música acompaña la apertura del sobre, no afecta el rendimiento inicial, respeta las restricciones de los navegadores y ofrece un control claro al invitado sin interrumpir la navegación.
