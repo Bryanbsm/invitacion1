@@ -1,0 +1,162 @@
+lo encontre
+corazones azules de caen desde arriba los mas granes caen mas rapido ,y viceversa , caen estilo hoja
+cada que le de a uno resplancede y desaparece haciendo un sonido  y suma un punto los puntos no aparecen constantemente en la pantalla,  solo 1X💙 se muestre por 0.3 segundos y se desvanece y luego que le de a otro 2X💙 y se desaparezca que sea algo asi como una caracteristica oculta, debera verse en la parte superior derecha debajo del cambio de modo noche o modo claro
+
+esto debe tener unas instrucciones en letra pequeña como una sorpresa para los que leen hasta el final
+
+aparte de 🌸 6. Sopla los pétalos
+
+Van cayendo pétalos.
+Debe deslizar el dedo.
+Los pétalos vuelan.
+Muy relajante.
+
+
+Lo haría como una característica secreta
+No anunciaría:
+"¡Juega aquí!"
+Sino algo muy discreto al final de la invitación.
+Por ejemplo:
+✨ Un pequeño secreto...
+Si llegaste hasta aquí, quizá el cielo tenga algo preparado para ti... 💙
+o
+PD: Dicen que quienes encuentran los corazones azules reciben un poquito más de suerte para el gran día. 💙
+o incluso algo más sutil:
+Algunas sorpresas solo aparecen para quienes leen hasta el final...
+Mecánica
+Después de unos segundos de llegar al final.
+Empiezan a aparecer.
+💙
+
+        💙
+
+              💙
+
+    💙
+No demasiados.
+Entre 1 y 3 por segundo.
+La caída
+No deben caer rectos.
+Los haría igual que una hoja.
+\
+ \
+  /
+ /
+\
+con
+rotación
+oscilación
+cambio de velocidad
+Los grandes
+💙
+caen rápido.
+Los pequeños
+💙
+caen despacio.
+Tal como ocurre con las hojas.
+Al tocar uno
+No simplemente desaparecer.
+Haría:
+💙
+↓
+✨
+↓
+pequeño brillo
+↓
+escala
+1.0
+
+↓
+
+1.25
+
+↓
+
+0
+↓
+desaparece.
+Sonido
+Muy corto.
+Algo tipo:
+✨
+o
+"pling"
+de menos de
+100 ms.
+Nunca un sonido fuerte.
+El contador
+Aquí está la parte que más me gustó.
+No dejarlo fijo.
+Cuando toca el primero.
+Aparece
+1× 💙
+Arriba a la derecha.
+Hace
+fade in
+pequeño rebote
+y
+desaparece.
+Cuando toca otro.
+2× 💙
+vuelve a aparecer.
+y así.
+Nunca permanece fijo.
+Da sensación de haber descubierto un secreto.
+¿Qué pasa si llega a ciertos puntajes?
+Yo añadiría recompensas.
+Por ejemplo.
+10 corazones
+💙
+
+¡Encontraste 10 corazones!
+
+Gracias por compartir nuestra felicidad.
+25
+Pequeña lluvia dorada.
+50
+Desbloquea una frase.
+❤️
+
+"El amor siempre encuentra el camino."
+100
+Una insignia.
+💙 Maestro del Amor 💙
+No sirve para nada.
+Pero da satisfacción.
+Otra idea
+Que algunos corazones sean muy raros.
+Por ejemplo.
+Uno dorado.
+💛
+Aparece una vez cada
+100
+corazones.
+Si lo toca.
+Vale
+10 puntos.
+Incluso...
+Podrías poner.
+💙
+
+x2
+Durante
+5 segundos.
+Todos los corazones valen doble.
+Lo mejor
+Que nadie sepa que existe.
+Los invitados lo descubren solos.
+Yo lo conectaría con el soplido
+Recuerda que querías implementar:
+Soplar los pétalos.
+Imagínate esto.
+El usuario sopla.
+Los pétalos salen volando.
+Y entre ellos.
+Aparece un corazón azul.
+💙
+Como si estuviera escondido.
+Eso hace que ambos "minijuegos" estén relacionados.
+Una última idea que creo que encaja perfectamente con tu proyecto
+En lugar de que los corazones aparezcan inmediatamente al llegar al final, haría que el sistema esperara unos 8 o 10 segundos. Muchos usuarios pensarán que la invitación ya terminó y, de repente, comenzarán a caer lentamente los primeros corazones.
+Ese pequeño retraso hace que se sienta como un descubrimiento, no como una función más de la página.
+Además, llevaría un contador oculto en localStorage. Si alguien vuelve a abrir la invitación otro día, conservaría su progreso. Incluso podrías desbloquear pequeños mensajes en determinados hitos (10, 25, 50 corazones...), sin anunciarlo nunca. Los invitados curiosos descubrirán poco a poco que la invitación guarda "secretos", y esa sensación de exploración es precisamente lo que hace que una experiencia digital se recuerde mucho después de haber confirmado la asistencia.

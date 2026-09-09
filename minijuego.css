@@ -1,0 +1,165 @@
+/* Contenedor del puntaje efímero */
+#minigame-score-text {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #3b82f6;
+    font-size: 1.2rem;
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.score-show {
+    animation: scoreFadeBounce 1.7s forwards;
+}
+
+@keyframes scoreFadeBounce {
+    0% { opacity: 0; transform: translateY(10px) scale(0.8); }
+    15% { opacity: 1; transform: translateY(-5px) scale(1.1); }
+    80% { opacity: 1; transform: translateY(-5px) scale(1); } /* ¡Aquí hace la pausa visible! */
+    100% { opacity: 0; transform: translateY(-15px) scale(1); }
+}
+
+/* Corazones cayendo */
+.minijuego-heart {
+    position: fixed;
+    top: -50px;
+    cursor: pointer;
+    z-index: 9999; /* Asegura que esté por encima de cualquier otro menú de la app */
+    
+    /* INTERACCIÓN MÓVIL (Crucial) */
+    user-select: none; 
+    -webkit-user-select: none; /* Evita seleccionar el corazón como si fuera texto en iOS */
+    -webkit-tap-highlight-color: transparent; /* Quita el recuadro azul que sale al tocar en Android */
+    
+    /* RENDIMIENTO Y ANIMACIÓN */
+    will-change: transform; /* Activa la aceleración por hardware (GPU) para evitar tirones */
+    transition: transform 0.1s; /* Suaviza el efecto visual de "aplastar" el corazón al tocarlo */
+}
+
+.minijuego-heart:active {
+    transform: scale(0.9);
+}
+
+/* Animación de desaparición al tocar */
+.heart-popped {
+    animation: popAndVanish 0.3s forwards !important;
+    pointer-events: none;
+}
+
+@keyframes popAndVanish {
+    0% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 5px rgba(255,255,255,0.8)); }
+    40% { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,1)); }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+/* Sistema de Logros estilo Xbox */
+.xbox-achievement {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #107C10;
+    color: white;
+    display: flex;
+    align-items: center;
+    
+    /* Fase 1 (Colapsado): Solo envuelve el trofeo */
+    gap: 0px;
+    padding: 12px;
+    border-radius: 50px;
+
+    /* EL SECRETO PARA ADAPTARSE AL TEXTO */
+    width: max-content; /* Permite que el contenedor busque su ancho natural */
+    max-width: 58px; /* Lo fuerza a colapsar al inicio cubriendo solo el icono *//* Tamaño para envolver exactamente el ícono de 35px + 20px de padding */
+
+    height: 58px;
+    overflow: hidden;
+    
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 100;
+    font-family: 'Montserrat', sans-serif;
+    pointer-events: none;
+    box-sizing: border-box;
+
+    /* Animación de salida: Primero se encoge a los lados (0s delay), luego baja (0.4s delay) */
+    transition: max-width 0.4s ease 0s,
+                padding 0.4s ease 0s,
+                gap 0.4s ease 0s,
+                bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+}
+
+.xbox-achievement.show {
+    /* Fase 2 (Expandido): Muestra todo el ancho */
+    bottom: 40px;
+    max-width: 95vw; 
+    gap: 15px;
+    padding: 10px 25px 10px 10px;
+    
+    /* Animación de entrada: Primero sube (0s delay), luego se estira a los lados (0.4s delay) */
+    transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s,
+                max-width 0.4s ease 0.4s,
+                padding 0.4s ease 0.4s,
+                gap 0.4s ease 0.4s;
+}
+
+.xbox-icon {
+    background: white;
+    color: #107C10;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    min-width: 35px; /* Previene que el trofeo se aplaste mientras el contenedor se encoge */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.xbox-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 200px; /* Asegura que el texto mantenga su forma original aunque esté oculto */
+    
+    /* Oculto por defecto */
+    opacity: 0;
+    /* Al desaparecer: el texto se oculta inmediatamente */
+    transition: opacity 0.2s ease 0s;
+}
+
+.xbox-achievement.show .xbox-text-container {
+    /* Visible al expandir */
+    opacity: 1;
+    /* Al aparecer: el texto se revela después de que el cuadro termine de expandirse (0.6s delay) */
+    transition: opacity 0.3s ease 0.6s;
+}
+
+.xbox-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.xbox-desc {
+    font-size: 0.95rem;
+    font-weight: bold;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+/* Bloquear interacciones de zoom y selección en toda la página */
+html, body {
+    touch-action: manipulation; /* Previene el zoom por doble toque en móviles */
+    -webkit-user-select: none;  /* Evita que se seleccione texto al dar clics rápidos (Safari) */
+    user-select: none;          /* Evita selección de texto (General) */
+    -webkit-touch-callout: none;/* Evita el menú contextual prolongado en iOS */
+}
+

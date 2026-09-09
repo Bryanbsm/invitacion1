@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="es" class="dark scroll-smooth overflow-hidden">
+<html lang="es" class="scroll-smooth overflow-hidden">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Invitación digital para la boda de Bryan y Katherin. Confirma tu asistencia y acompáñanos en este día tan especial.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Bryan & Katherin - ¡Nos Casamos! 14.11.2026</title>
 
     <!-- ============================================================
-         VISTA PREVIA AL COMPARTIR (WhatsApp, iMessage, etc.)
+         VISTA PREVIA AL COMPARTIR (WhatsApp, Facebook, iMessage, etc.)
     ============================================================ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Bryan & Katherin" > 
-    <meta property="og:description" content="Toca para abrir tu invitación 💌">
-    <meta property="og:image" content="https://bryanbsm.github.io/invitacion1/assets/preview-sobre.webp">
+    <meta property="og:description" content="Toca para abrir tu invitación 💌 14 de Noviembre de 2026 · Belalcázar, Caldas">
+    <meta property="og:image" content="https://bryanbsm.github.io/invitacion1/assets/preview-sobre.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://bryanbsm.github.io/invitacion1/index.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bryan & Katherin" >
-    <meta name="twitter:description" content="Toca para abrir tu invitación 💌">
-    <meta name="twitter:image" content="https://bryanbsm.github.io/invitacion1/assets/preview-sobre.webp">
+    <meta name="twitter:description" content="14 de Noviembre de 2026 · Belalcázar, Caldas">
+    <meta name="twitter:image" content="https://bryanbsm.github.io/invitacion1/assets/preview-sobre.png">
 
     <!-- Favicon / ícono al agregar a inicio del celular (mismo lacre de la invitación) -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -27,7 +26,7 @@
     <meta name="theme-color" content="#0B132B">
 
     <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script> 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Google Fonts -->
@@ -39,11 +38,9 @@
     
     <script>
         tailwind.config = {
-            darkMode: 'class', // Añade esta línea
             theme: {
                 extend: {
                     colors: {
-                        cream: '#FDFBF7', // Color fondo modo claro
                         navy: {
                             dark: '#070B19',
                             medium: '#0D132B',
@@ -72,37 +69,33 @@
         }
     </script>
     <link rel="stylesheet" href="styles.css">
-   <!-- <link rel="stylesheet" href="minigame.css">-->
-    <link rel="stylesheet" href="minijuego.css">
-
 </head>
-<body class="flex justify-center items-center min-h-screen text-slate-800 dark:text-slate-100 font-sans antialiased overflow-x-hidden overflow-hidden selection:bg-rosegold-300 selection:text-navy-dark transition-colors duration-500">
+<body class="flex justify-center items-center min-h-screen text-slate-100 font-sans antialiased overflow-x-hidden overflow-hidden selection:bg-rosegold-300 selection:text-navy-dark">
 
 
- <!-- BOTÓN MODO DÍA / NOCHE -->
-    <button id="theme-toggle" class="fixed top-5 right-5 z-[60] w-10 h-10 rounded-full glass-card border-rosegold-300/40 dark:border-rosegold-300/30 flex items-center justify-center text-rosegold-500 dark:text-rosegold-300 transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg">
-        <i data-lucide="sun" class="w-5 h-5 absolute transition-transform duration-500 rotate-0 scale-100 dark:-rotate-90 dark:scale-0"></i>
-        <i data-lucide="moon" class="w-5 h-5 absolute transition-transform duration-500 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
-    </button>
 
-    <!-- PRELOADER -->
-    <div id="preloader" class="fixed inset-0 z-[100] bg-[#070B19] dark:bg-navy-dark flex flex-col items-center justify-center text-center px-6 transition-all duration-700 ease-out">
-        <div class="relative flex flex-col items-center gap-5">
-            <span class="font-serif text-3xl text-rosegold-200 tracking-[0.25em] animate-pulse">B & K</span>
-            <div class="w-48 h-[2px] bg-rosegold-300/20 dark:bg-rosegold-300/10 rounded-full overflow-hidden">
-                <div id="progress-bar" class="w-0 h-full bg-gradient-to-r from-gold to-rosegold-300 transition-all duration-300 ease-out"></div>
+
+    <!-- ============================================================
+         PRELOADER: se muestra mientras se precarga la música y
+         los recursos esenciales, antes de revelar el sobre.
+    ============================================================ -->
+    <div id="preloader" class="fixed inset-0 max-w-[450px] mx-auto z-[60] flex flex-col items-center justify-center bg-navy-dark px-6 text-center select-none">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute top-[20%] -left-16 w-[220px] h-[220px] rounded-full bg-rosegold-500/10 blur-[100px] animate-float"></div>
+            <div class="absolute bottom-[20%] -right-16 w-[220px] h-[220px] rounded-full bg-gold/10 blur-[100px] animate-float" style="animation-delay:-4s;"></div>
+        </div>
+        <div class="relative z-10 flex flex-col items-center gap-6">
+            <div class="w-12 h-12 rounded-full border border-rosegold-300/30 flex items-center justify-center font-serif text-xl text-rosegold-300">
+                B&K
             </div>
-            <span id="progress-text" class="text-[9px] tracking-[0.3em] text-slate-300 uppercase">Preparando invitación... 0%</span>
+            <div id="preloader-ring" class="w-9 h-9 rounded-full border-2 border-rosegold-300/20 border-t-rosegold-300 animate-spin"></div>
+            <p id="preloader-text" class="text-[11px] tracking-[0.3em] text-rosegold-300/70 uppercase font-medium">Preparando tu invitación...</p>
         </div>
     </div>
 
-    <!-- CANVAS ANIMACIONES -->
-    <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-[5]"></canvas>
-
     <!-- Mobile Screen Wrapper (Restricting desktop view to elegant mobile preview) -->
-    <div class="relative w-full max-w-[450px] min-h-screen bg-transparent shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-x-hidden no-scrollbar flex flex-col justify-start">
+    <div id="app-wrapper" class="relative w-full max-w-[450px] min-h-screen bg-navy-dark shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-x-hidden no-scrollbar flex flex-col justify-start">
         
-
         <!-- ENVELOPE GATE: Pantalla inicial del sobre cerrado -->
         <div id="envelope-gate" class="fixed inset-0 max-w-[450px] mx-auto z-50 flex flex-col items-center justify-center bg-navy-dark px-6 text-center select-none">
             <div class="absolute inset-0 pointer-events-none overflow-hidden">
@@ -149,7 +142,7 @@
                             <span class="font-serif italic text-[13px] tracking-[0.15em]" style="color:#3a2f1d;">Katherin</span>
                         </div>
 
-                        <img src="assets/anillos.webp" alt="Anillos" class="w-11 h-11 object-contain opacity-80 mt-1">
+                        <img src="assets/anillos.png" alt="Anillos" class="w-11 h-11 object-contain opacity-80 mt-1">
                     </div>
 
                     <!-- Solapa superior (triángulo) con brillo -->
@@ -167,7 +160,7 @@
                 </div>
 
                 <div class="flex flex-col items-center gap-2">
-                    <p class="text-[13px] tracking-widest text-slate-400 uppercase">Toca el sobre o desliza para abrir <br><br><br><br><br><br><br>v3</p>
+                    <p class="text-[13px] tracking-widest text-slate-400 uppercase">Toca el sobre o desliza para abrir</p>
                     <div class="text-rosegold-300/60 animate-bounce">
                         <i data-lucide="chevron-down" class="w-5 h-5"></i>
                     </div>
@@ -203,15 +196,15 @@
                 </div>
 
                 <!-- Couples Name and Title -->
-                <div class="my-auto space-y-6"> 
+                <div class="my-auto space-y-6">
                     <div class="space-y-2">
                         <h1 class="font-serif text-4xl font-light tracking-wide text-white leading-relaxed">
                             Bryan <br>
-                            <span class="block font-serif text-lg tracking-[0.2em] text-rosegold-200/80 italic mt-1">Martínez Mejia</span>
+                            <p class="font-serif text-lg tracking-[0.2em] text-rosegold-200/80 italic mt-1">Martínez Mejia</p>
                             <span class="text-rosegold-300 text-3xl italic font-serif">&</span><br>
                             Katherin
                         </h1>
-                            <p class="font-serif text-lg tracking-[0.2em] text-rosegold-200/80 italic mt-1">Morales Arcila</p>
+                        <p class="font-serif text-lg tracking-[0.2em] text-rosegold-200/80 italic mt-1">Morales Arcila</p>
                     </div>
                     
                     <div class="w-12 h-[1px] bg-gradient-to-r from-transparent via-rosegold-300 to-transparent mx-auto my-4"></div>
@@ -233,23 +226,9 @@
             </section>
 
 
-            <!-- IMPORTANTE: El contenedor padre directo debe tener relative y overflow-hidden -->
-<div class="relative overflow-hidden w-full py-16">
-    
-    <!-- El fondo optimizado    otro fondo desliza 
-    <div class="js-parallax-bg absolute inset-0 bg-[url('assets/foto1.webp')] bg-cover bg-center opacity-[0.09] pointer-events-none z-0 scale-125 will-change-transform origin-center"></div>
-    -->
-    <!-- Tu contenido (asegúrate de que tenga z-10 y relative para quedar por encima) -->
-    <div class="relative z-10 text-center mb-12 reveal-element">
-        <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Desliza para descubrir</span>
-        <h2 class="font-serif text-3xl text-white mt-1"> </h2>
-        <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
-    </div>
-
-</div>
             <!-- SECTION 2: NUESTRA HISTORIA (Scroll-driven Word Reveal) -->
             <section id="historia" class="min-h-screen w-full flex flex-col justify-center px-8 py-20 relative">
-                <div class="absolute inset-0 bg-[url('assets/foto1.webp')] bg-cover bg-fixed bg-center opacity-[0.49] pointer-events-none z-0"></div>
+                <div class="absolute inset-0 bg-[url('assets/foto1.jpg')] bg-cover bg-fixed bg-center opacity-[0.09] pointer-events-none z-0"></div>
                 <div class="text-center mb-12 reveal-element">
                     <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">El Destino</span>
                     <h2 class="font-serif text-3xl text-white mt-1">Nuestra Historia</h2>
@@ -257,175 +236,26 @@
                 </div>
 
                 <!-- Word-by-word reveal target paragraph -->
-             <div class="glass-card rounded-2xl p-8 relative overflow-hidden">
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden">
                     <!-- Elegant background quote marks -->
-                    <span class="absolute top-2 left-4 text-9xl font-serif text-rosegold-300/5 select-none">“</span>
+                    <span class="absolute top-2 left-4 text-7xl font-serif text-rosegold-300/5 select-none">“</span>
                     
-                    <!-- Cambiado text-lg por text-xl -->
-                    <p id="story-text" class="text-center font-serif text-xl leading-relaxed text-slate-300/90 italic tracking-wide">
+                    <p id="story-text" class="text-center font-serif text-lg leading-relaxed text-slate-300/90 italic tracking-wide">
                         Hay momentos en la vida que son mágicos y personas que se convierten en nuestro hogar. 
                         Desde el primer día supimos que queríamos escribir un siempre juntos. 
                         Hoy decidimos dar el paso más importante de nuestras vidas, uniendo nuestros caminos en un solo destino. 
                         Queremos celebrar este inicio eterno junto a ti.
                     </p>
 
-
-                 
                     <span class="absolute bottom-[-20px] right-4 text-7xl font-serif text-rosegold-300/5 select-none">”</span>
                 </div>
-                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
 
-<div class="mt-8 text-center reveal-element flex justify-center">
-    <!-- Añadido backdrop-blur-sm, bg-black/20, padding (px-4 py-2) y drop-shadow -->
-    <p class="font-sans text-xs tracking-widest text-rosegold-300 font-light italic px-4 py-2 rounded-lg backdrop-blur-sm bg-black/20 shadow-lg drop-shadow-md inline-block max-w-[90%]">
-        "El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección."
-    </p>
-</div>
-            </section>
-
-
-   <!-- SECTION 7DETALLES DEL EVENTO -->
-            <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
-                <div class="text-center mb-10 reveal-element">
-                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">La Celebración</span>
-                    <h2 class="font-serif text-3xl text-white mt-1">Detalles de la Boda</h2>
-                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
-                </div>
-
-<!-- Ceremony Elegant Card -->
-<div class="glass-card rounded-3xl p-8 relative space-y-8 overflow-hidden reveal-element">
-    
-    <!-- CONTENEDOR DE FONDO: Agrupamos imagen y capa oscura para evitar que se separen -->
-    <div class="absolute inset-0 z-0 pointer-events-none">
-        <!-- Ajusté la opacidad a 70 (opacity-70) para que la iglesia sea más visible debajo del filtro -->
-        <div class="absolute inset-0 bg-[url('assets/iglesia.webp')] bg-cover bg-center opacity-70 blur-[1px] transition-all duration-1000"></div>
-        <div class="absolute inset-0 bg-navy-dark/60"></div>
-    </div>
-
-    <!-- Icon Header -->
-    <div class="relative z-10">
-        <div class="flex justify-center mb-6">
-            <div class="p-4 rounded-full bg-rosegold-300/5 border border-rosegold-300/20 text-rosegold-300">
-                <i data-lucide="church" class="w-8 h-8"></i>
-            </div>
-        </div>
-
-                    <!-- Title & Venue -->
-                    <div class="text-center space-y-2 mb-6">
-                        <h3 class="font-serif text-2xl text-white tracking-wide font-light">La Ceremonia</h3>
-                        <p class="font-serif text-rosegold-300 text-lg italic">Parroquia La Inmaculada</p>
-                        <p class="text-xs text-slate-400">Belalcázar, Caldas</p>
-                    </div>
-
-                    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-rosegold-300/20 to-transparent"></div>
-
-                    <!-- Event Logistics -->
-                    <div class="grid grid-cols-2 gap-4 text-center">
-                        <div class="space-y-1">
-                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium">Hora</span>
-                            <p class="text-sm font-light text-slate-200 mt-1">02:00 PM</p>
-                        </div>
-                         
-                        <!-- Tooltip Interactivo para Vestimenta -->
-                        <div class="space-y-1 cursor-pointer group relative" onclick="showDressCodeAlert()">
-                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium flex justify-center items-center gap-1">
-                                Vestimenta
-                                <i data-lucide="info" class="w-3 h-3 text-rosegold-400 group-hover:animate-pulse"></i>
-                            </span>
-                            <p class="text-sm font-light text-slate-200 mt-1 underline decoration-dashed decoration-rosegold-300/50 underline-offset-4">Gala / Formal</p>
-                        </div>
-                    </div>
-
-                    <!-- Location CTA Button -->
-                    <div class="pt-4">
-                        <a href="https://maps.app.goo.gl/CxwR12ZooaeQFiVR8" 
-                           target="_blank" 
-                           class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
-                            <i data-lucide="map-pin" class="w-4 h-4"></i>
-                            Ver Ubicación
-                        </a>
-                    </div>
-                </div>
-                </section>
-
-
-           
-
-<!-- SECTION 5 FECHA (Calendario interactivo + Cuenta Regresiva) -->
-            <section id="fecha" class="min-h-screen w-full flex flex-col justify-center px-8 py-20 relative">
-                <div class="absolute inset-0 bg-[url('assets/foto4.webp')] bg-cover bg-fixed bg-center opacity-[0.49] pointer-events-none z-0"></div>
-                <div class="text-center mb-6 reveal-element">
-                    
-                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Guarda la Fecha</span>
-                    <h2 class="font-serif text-3xl text-white mt-1">Fecha</h2>
-                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
-                </div>
-
-                <div class="w-full glass-card rounded-3xl p-6 text-center reveal-element">
-
-                    <!-- Calendario interactivo -->
-                    <div class="flex items-center justify-center gap-2 mb-4">
-                        <span class="font-serif text-lg tracking-widest text-white">Noviembre</span>
-                        <span class="w-1 h-1 rounded-full bg-rosegold-300/50"></span>
-                        <span class="font-sans text-sm tracking-widest text-rosegold-300/80">2026</span>
-                    </div>
-
-                    <div class="grid grid-cols-7 gap-y-2 text-center mb-1">
-                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">D</span>
-                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">L</span>
-                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">M</span>
-                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">M</span>
-                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">J</span>
-                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">V</span>
-                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">S</span>
-                    </div>
-
-                    <div id="calendar-grid" class="grid grid-cols-7 gap-y-2 text-center place-items-center"></div>
-
-                    <div class="w-10 h-[1px] bg-rosegold-300/20 mx-auto my-5"></div>
-
-                    <!-- Faltan X días -->
-                    <div class="mb-5">
-                    <!--    <span id="days-until-number" class="font-serif text-5xl text-transparent bg-clip-text bg-gradient-to-r from-gold to-rosegold-300 font-semibold">00</span>-->
-                     <!--   <p class="text-[10px] tracking-[0.25em] text-slate-400 uppercase mt-1">Días para nuestra boda</p>-->
-                    </div>
-
-                    <h3 class="font-serif text-lg tracking-wider text-rosegold-300 font-light mb-3">Cuenta Regresiva</h3>
-
-                    <!-- Countdown Display Grid -->
-                    <div id="countdown-container" class="grid grid-cols-4 gap-3 text-center">
-                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
-                            <span id="days" class="block font-serif text-2xl text-white font-semibold">00</span>
-                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Días</span>
-                        </div>
-                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
-                            <span id="hours" class="block font-serif text-2xl text-white font-semibold">00</span>
-                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Horas</span>
-                        </div>
-                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
-                            <span id="minutes" class="block font-serif text-2xl text-white font-semibold">00</span>
-                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Mins</span>
-                        </div>
-                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
-                            <span id="seconds" class="block font-serif text-2xl text-rose-300/90 font-semibold">00</span>
-                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Segs</span>
-                        </div>
-                    </div>
-                    <p class="text-[10px] tracking-widest text-slate-400 uppercase mt-4 mb-5">Para nuestro gran día</p>
-
-                    <!-- Agregar al calendario -->
-                        <a id="add-to-calendar"
-                        href="#"
-                        class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
-                            <i data-lucide="calendar-plus" class="w-4 h-4"></i>
-                            Agregar al Calendario
-                        </a>
+                <div class="mt-8 text-center reveal-element">
+                    <p class="font-sans text-xs tracking-widest text-rosegold-300/70 font-light italic">"El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección."</p>
                 </div>
             </section>
 
-
-
-       <!-- SECTION 3: AGENDA DEL EVENTO  ocultada por ahora, se puede activar quitando los comentarios               
+               <!-- SECTION 3: AGENDA DEL EVENTO -->
             <section id="agenda" class="w-full px-6 py-16 relative reveal-element reveal-zoom-in">
                 <div class="text-center mb-10">
                     <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">El Cronograma</span>
@@ -489,10 +319,142 @@
                     </div>
                 </div>
             </section>
-  -->     
+
+   <!-- SECTION 7DETALLES DEL EVENTO -->
+            <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
+                <div class="text-center mb-10 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">La Celebración</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Detalles de la Boda</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+                </div>
+
+                <!-- Ceremony Elegant Card -->
+                <div class="glass-card rounded-3xl p-8 relative space-y-8 overflow-hidden reveal-element">
+                    <!-- Icon Header Foto Iglesia-->
+                     <div class="absolute inset-0 bg-[url('assets/iglesia.jpg')] bg-cover bg-center opacity-20 blur-[1px] z-0 transition-all duration-1000"></div>
+                    <div class="absolute inset-0 bg-navy-dark/60 z-0"></div>
+                     <!-- Icon Header -->
+                 <div class="relative z-10">
+                        <div class="flex justify-center mb-6">
+                            <div class="p-4 rounded-full bg-rosegold-300/5 border border-rosegold-300/20 text-rosegold-300">
+                                <i data-lucide="church" class="w-8 h-8"></i>
+                            </div>
+                        </div>
+
+                    <!-- Title & Venue -->
+                    <div class="text-center space-y-2 mb-6">
+                        <h3 class="font-serif text-2xl text-white tracking-wide font-light">La Ceremonia</h3>
+                        <p class="font-serif text-rosegold-300 text-lg italic">Parroquia La Inmaculada</p>
+                        <p class="text-xs text-slate-400">Belalcázar, Caldas</p>
+                    </div>
+
+                    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-rosegold-300/20 to-transparent"></div>
+
+                    <!-- Event Logistics -->
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="space-y-1">
+                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium">Hora</span>
+                            <p class="text-sm font-light text-slate-200 mt-1">04:00 PM</p>
+                        </div>
+                         
+                        <!-- Tooltip Interactivo para Vestimenta -->
+                        <div class="space-y-1 cursor-pointer group relative" onclick="showDressCodeAlert()">
+                            <span class="text-[9px] tracking-widest text-gold uppercase font-medium flex justify-center items-center gap-1">
+                                Vestimenta
+                                <i data-lucide="info" class="w-3 h-3 text-rosegold-400 group-hover:animate-pulse"></i>
+                            </span>
+                            <p class="text-sm font-light text-slate-200 mt-1 underline decoration-dashed decoration-rosegold-300/50 underline-offset-4">Gala / Formal</p>
+                        </div>
+                    </div>
+
+                    <!-- Location CTA Button -->
+                    <div class="pt-4">
+                        <a href="https://maps.app.goo.gl/CxwR12ZooaeQFiVR8" 
+                           target="_blank" 
+                           class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                            Ver Ubicación
+                        </a>
+                    </div>
+                </div>
+                </section>
+
+
+           
+
+<!-- SECTION 5 FECHA (Calendario interactivo + Cuenta Regresiva) -->
+            <section class="w-full px-6 py-12 flex flex-col items-center">
+                <div class="text-center mb-6 reveal-element">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Guarda la Fecha</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Fecha</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+                </div>
+
+                <div class="w-full glass-card rounded-3xl p-6 text-center reveal-element">
+
+                    <!-- Calendario interactivo -->
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <span class="font-serif text-lg tracking-widest text-white">Noviembre</span>
+                        <span class="w-1 h-1 rounded-full bg-rosegold-300/50"></span>
+                        <span class="font-sans text-sm tracking-widest text-rosegold-300/80">2026</span>
+                    </div>
+
+                    <div class="grid grid-cols-7 gap-y-2 text-center mb-1">
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">D</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">L</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">M</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">M</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">J</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">V</span>
+                        <span class="text-[9px] tracking-widest text-slate-500 uppercase">S</span>
+                    </div>
+
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-y-2 text-center place-items-center"></div>
+
+                    <div class="w-10 h-[1px] bg-rosegold-300/20 mx-auto my-5"></div>
+
+                    <!-- Faltan X días -->
+                    <div class="mb-5">
+                    <!--    <span id="days-until-number" class="font-serif text-5xl text-transparent bg-clip-text bg-gradient-to-r from-gold to-rosegold-300 font-semibold">00</span>-->
+                     <!--   <p class="text-[10px] tracking-[0.25em] text-slate-400 uppercase mt-1">Días para nuestra boda</p>-->
+                    </div>
+
+                    <h3 class="font-serif text-lg tracking-wider text-rosegold-300 font-light mb-3">Cuenta Regresiva</h3>
+
+                    <!-- Countdown Display Grid -->
+                    <div id="countdown-container" class="grid grid-cols-4 gap-3 text-center">
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="days" class="block font-serif text-2xl text-white font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Días</span>
+                        </div>
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="hours" class="block font-serif text-2xl text-white font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Horas</span>
+                        </div>
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="minutes" class="block font-serif text-2xl text-white font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Mins</span>
+                        </div>
+                        <div class="bg-navy-dark/60 rounded-xl p-3 border border-rosegold-300/10 shadow-inner">
+                            <span id="seconds" class="block font-serif text-2xl text-rose-300/90 font-semibold">00</span>
+                            <span class="text-[8px] tracking-widest text-rosegold-300/70 uppercase font-light">Segs</span>
+                        </div>
+                    </div>
+                    <p class="text-[10px] tracking-widest text-slate-400 uppercase mt-4 mb-5">Para nuestro gran día</p>
+
+                    <!-- Agregar al calendario del celular -->
+                    <a id="add-to-calendar" href="#" download="Boda-Bryan-y-Katherin.ics"
+                       class="btn-gold-border text-navy-dark text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-rosegold-400/20 mx-auto w-full max-w-[240px]">
+                        <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+                        Agregar al Calendario
+                    </a>
+                </div>
+            </section>
+
+  
                 
   <!-- SECTION 5: codigo de vestimenta Colores -->
-                <section class="w-full flex flex-col justify-center px-1 py-12 relative">
+                <section class="w-full flex flex-col justify-center px-6 py-12 relative">
                 <div class="text-center mb-10 reveal-element">
                     <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Dress Code</span>
                     <h2 class="font-serif text-3xl text-white mt-1">Código de Vestimenta</h2>
@@ -502,158 +464,26 @@
                 <div class="glass-card rounded-3xl p-8 relative overflow-hidden reveal-element text-center">
                     <p class="font-serif text-lg text-white mb-6 font-light">Colores recomendados</p>
                     
-                  
-                <!---    
                     <div class="flex flex-wrap justify-center gap-3 mb-8">
                         <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #070707;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #b35e49;"></div> 
                         <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #996c31;"></div> 
                         <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #aa4425;"></div> 
+                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #800000;"></div> 
                         <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #7ea136;"></div> 
                         <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #d1af15;"></div> 
-                    </div>
 
-                    <div class="flex flex-wrap justify-center gap-3 mb-8">
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #070707;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #222427;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #4A4A4A;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #535552;"></div> 
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-3 mb-8">
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #5C4033;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #A47149;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #B65E3C;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #C19A6B;"></div> 
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-3 mb-8">
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #355E3B;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #556B2F;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #708238;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #6e8626;"></div> 
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-3 mb-8">
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #6D213C;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #9e2c54;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #4e334e;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #6E4B6E;"></div> 
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-3 mb-8">
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #342414;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #4B3621;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #744d1a;"></div> 
-                        <div class="w-8 h-8 rounded-full border border-white/20 shadow-md" style="background-color: #926f40;"></div> 
-                    </div>
-                -->
-                    <h3 class="text-center text-sm font-medium mb-4">
-                        Puedes darte una idea de los tonos que sugerimos para este día. <br>
-                        <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Adultos y niños</span>
-                    </h3>
-                    
-
-                    <div id="color-palette" class="flex justify-center gap-4 flex-wrap">
-
-                        <button class="color-main"
-                            data-group="negros"
-                            style="background:#070707">
-                        </button>
-
-                        <button class="color-main"
-                            data-group="tierras"
-                            style="background:#5C4033">
-                        </button>
-
-                        <button class="color-main"
-                            data-group="verdes"
-                            style="background:#355E3B">
-                        </button>
-
-                        <button class="color-main"
-                            data-group="vinos"
-                            style="background:#6D213C">
-                        </button>
-
-                    </div>
-
-                    <div
-                    id="palette-details"
-                    class="mt-6 hidden transition-all duration-300">
                     </div>
 
                     <div class="border-t border-rosegold-300/20 pt-6 mt-2">
                         <p class="text-[10px] tracking-widest text-rosegold-300 uppercase font-medium mb-2">Importante</p>
-                        <p class="text-sm font-light text-slate-300">Nos reservamos el <b>blanco, marfil, amarillo, beige</b> los tonos <b>azules</b> exclusivamente para los novios.</p>
-                                    
-                                                               <div class="w-10 h-[1px] bg-rosegold-300/20 mx-auto my-5"></div>
-
-
+                        <p class="text-sm font-light text-slate-300">Nos reservamos el <b>blanco</b> y el <b>azul</b> exclusivamente para los novios.</p>
                     </div>
-
-
-                                            <!-- GRID CONTENEDOR: 3 columnas en móviles, 5 en pantallas medianas -->
-                            <div class="grid grid-cols-3 md:grid-cols-5 justify-items-center gap-4 mt-4">
-
-                                <!-- 1. Blanco -->
-                                <div class="group flex flex-col items-center">
-                                    <div class="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 shadow" style="background:#FFFFFF;">
-                                        <svg class="w-6 h-6 text-red-600 drop-shadow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                                            <path d="M6 6L18 18M18 6L6 18"/>
-                                        </svg>
-                                    </div>
-                                    <p class="mt-2 text-xs text-center text-gray-700">Blanco</p>
-                                </div>
-
-                                <!-- 2. Beige -->
-                                <div class="group flex flex-col items-center">
-                                    <div class="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 shadow" style="background:#F5F5DC;">
-                                        <svg class="w-6 h-6 text-red-600 drop-shadow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                                            <path d="M6 6L18 18M18 6L6 18"/>
-                                        </svg>
-                                    </div>
-                                    <p class="mt-2 text-xs text-center text-gray-700">Beige</p>
-                                </div>
-
-                                <!-- 3. Amarillo -->
-                                <div class="group flex flex-col items-center">
-                                    <div class="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 shadow" style="background:#e3dc24;">
-                                        <svg class="w-6 h-6 text-red-600 drop-shadow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                                            <path d="M6 6L18 18M18 6L6 18"/>
-                                        </svg>
-                                    </div>
-                                    <p class="mt-2 text-xs text-center text-gray-700">Amarillo</p>
-                                </div>
-
-                                <!-- 4. Azul Oscuro -->
-                                <div class="group flex flex-col items-center">
-                                    <div class="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 shadow" style="background:#0e3351;">
-                                        <svg class="w-6 h-6 text-red-600 drop-shadow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                                            <path d="M6 6L18 18M18 6L6 18"/>
-                                        </svg>
-                                    </div>
-                                    <p class="mt-2 text-xs text-center text-gray-700">Azul Oscuro</p>
-                                </div>
-
-                                <!-- 5. Azul Claro -->
-                                <div class="group flex flex-col items-center">
-                                    <div class="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 shadow" style="background:#69a7de;">
-                                        <svg class="w-6 h-6 text-red-600 drop-shadow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                                            <path d="M6 6L18 18M18 6L6 18"/>
-                                        </svg>
-                                    </div>
-                                    <p class="mt-2 text-xs text-center text-gray-700">Azul Claro</p>
-                                </div>
-
-                            </div>
-
-
-
-                                                </div>
+                </div>
             </section>
 
 
-  <!-- SECTION 6: SOLO ADULTOS
+  <!-- SECTION 6: SOLO ADULTOS-->
 
              <section class="w-full flex flex-col justify-center px-6 py-4 relative mb-8">
                 <div class="glass-card rounded-3xl p-6 text-center reveal-element border border-rosegold-300/20">
@@ -668,38 +498,35 @@
                     </p>
                 </div>
             </section>
-            -->
 
-  <!-- Elegant Card for Details / Souvenir (Lluvia de sobres) icono regalo -->
+<!-- Elegant Card for Details / Souvenir (Lluvia de sobres) icono regalo -->
  
-                <div class="glass-card rounded-3xl p-6 mt-6 relative space-y-4 reveal-element" px-6 py-4 relative mb-8>
+                <div class="glass-card rounded-3xl p-6 mt-6 relative space-y-4 reveal-element">
                     <div class="flex items-center gap-4">
                         <div class="p-5 rounded-full bg-gold/5 border border-gold/20 text-gold">
                             <i data-lucide="gift" class="w-10 h-10"></i>
                         </div>
                         <div>
+                         <!--    <h4 class="font-serif text-lg text-white font-light">LS</h4>-->
                             <p class="text-sm text-slate-400 mt-0.5">Tu presencia es nuestro mayor regalo, poder compartir este dia contigo.</p>
                         </div>
                     </div>
                 </div>
-                                                                         <div class="w-10 h-[1px] bg-rosegold-300/20 mx-auto my-5"></div>
-
+          
 
 
         <!-- SECTION 5: RSVP (CONFIRMACIÓN) -->
-            <section class="min-h-screen w-full flex flex-col justify-center px-2 py-16 relative">
-                
-               <div class="absolute inset-0 bg-[url('assets/foto2.webp')] bg-cover bg-fixed bg-center opacity-[0.10] pointer-events-none z-0"></div>
+            <section class="min-h-screen w-full flex flex-col justify-center px-6 py-16 relative">
+               <div class="absolute inset-0 bg-[url('assets/foto2.jpg')] bg-cover bg-fixed bg-center opacity-[0.10] pointer-events-none z-0"></div>
                 <div class="text-center mb-8 reveal-element"> 
                     <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">Confirmación de Asistencia</span>
                     <h2 class="font-serif text-3xl text-white mt-1">Acompáñanos</h2>
-                    <p class="text-base text-slate-400 mt-2"> <br> </p>
+                    <p class="text-base text-slate-400 mt-2">Agradecemos confirmar tu asistencia antes del <br> 15 de Octubre de 2026</p>
                     <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-4"></div>
                 </div>
 
                 <!-- RSVP Form Card -->
-                <div class="glass-card rounded-3xl p-5 relative overflow-hidden reveal-element w-full"> 
-                     <!-- p-3 ajusta el ancho de lo de adent ro -->
+                <div class="glass-card rounded-3xl p-8 relative overflow-hidden reveal-element">
                     
                     <!-- Mensaje de error si no hay código en la URL -->
                     <div id="invalid-code-msg" class="hidden text-center space-y-3 py-6">
@@ -712,9 +539,8 @@
                         
                         <!-- Saludo personalizado -->
                         <div class="text-center pb-2 border-b border-rosegold-300/20">
-                            <p class="text-[10px] tracking-widest text-rosegold-300 uppercase font-medium">Confirmación de Asistencia</p>
-                            <h3 id="family-greeting-name" class="font-serif text-xl text-white mt-1">Agradecemos confirmar tu asistencia antes del
-1 de Octubre de 2026</h3>
+                            <p class="text-[10px] tracking-widest text-rosegold-300 uppercase font-medium">Familia / Invitado</p>
+                            <h3 id="family-greeting-name" class="font-serif text-xl text-white mt-1">...</h3>
                         </div>
 
                       <!-- Radio Attendance Cards -->
@@ -792,92 +618,41 @@
             </section>
 
 
-<!-- SECRETO / MINIJUEGO 
-<div id="secret-trigger" class="w-full py-12 flex flex-col items-center justify-center text-center px-6 relative z-10">
-    <p class="font-sans text-xs tracking-widest text-slate-500/60 italic mb-2">✨ Un pequeño secreto...</p>
-    <p class="font-serif text-sm text-slate-400/80">Si llegaste hasta aquí, quizá el cielo tenga algo preparado para ti... 💙</p>
-</div> -->
-
-<!-- Contenedor dinámico del contador y alertas laterales 
-<div id="minigame-counter" class="fixed top-[70px] right-5 z-[60] flex flex-col items-end pointer-events-none">
-    <span id="minigame-score-text" class="glass-card px-3 py-1.5 rounded-full text-rosegold-300 font-serif font-bold text-sm shadow-lg border border-rosegold-300/30 opacity-0 transition-all duration-300 transform scale-90">
-        1X 💙
-    </span> 
--->
-
-    <!-- Aquí aparecerán las frases "Gracias por compartir..." 
-    <div id="minigame-notifications" class="mt-2 flex flex-col items-end gap-2"></div>
-</div>-->
-
-
-
-<!-- Contenedor dinámico del contador y alertas laterales -->
-<div id="minigame-counter" class="fixed top-[70px] right-5 z-[60] flex flex-col items-end pointer-events-none">
-   <!-- <span id="minigame-score-text" class="glass-card px-3 py-1.5 rounded-full text-rosegold-300 font-bold text-sm shadow-lg border border-rosegold-300/30 opacity-0">
-        0 X 💙
-    </span> -->
-        <span id="minigame-score-text"
-            class="glass-card px-3 py-1.5 rounded-full text-rosegold-300 font-bold text-sm shadow-lg border border-rosegold-300/30">
-            0 x 💙
-        </span>
-    
-    <!-- Aquí aparecerán las frases "Gracias por compartir..."
-    <div id="minigame-notifications" class="mt-2 flex flex-col items-end gap-2"></div> -->
-</div>
-
-<!-- LOGRO TIPO XBOX (Centro inferior)
-<div id="xbox-achievement" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[70] flex flex-col items-center pointer-events-none opacity-0 translate-y-10 transition-all duration-500">
-    <div class="bg-navy-dark/95 border border-rosegold-300/40 rounded-full px-6 py-3 shadow-[0_0_20px_rgba(212,175,55,0.2)] flex flex-col items-center">
-        <span class="text-[5px] tracking-[0.3em] text-slate-400 uppercase mb-1">🏆 Logro Desbloqueado</span>
-        <span id="xbox-achievement-text" class="font-serif text-base text-rosegold-300 font-bold">💙 Maestro del Amor 💙</span>
-    </div>
-</div> -->
-
-
 
             <!-- FOOTER MONOGRAM -->
             <footer class="py-16 text-center border-t border-slate-900 bg-navy-dark/50">
                 <p class="font-serif text-2xl text-rosegold-300">B & K</p>
                 <p class="text-[9px] tracking-[0.3em] text-slate-500 uppercase mt-2">14 de Noviembre de 2026</p>
-                <p class="text-[8px] text-slate-600 uppercase mt-8 tracking-widest">Creado con amor por el novio de la boda</p> 
+                <p class="text-[8px] text-slate-600 uppercase mt-8 tracking-widest">Creado con amor por el novio de la boda</p>
             </footer>
-<!-- New section secret (Centro inferior) -->
-
-            <p id="secret-text" class="text-[9px] text-slate-400/50 dark:text-slate-500/50 mt-12 cursor-pointer transition-colors hover:text-rosegold-500 text-center">✨ Algunas sorpresas solo aparecen para quienes leen hasta el final... 💙</p>
 
         </div>
 
         <!-- ============================================================
-             CONTROLES FLOTANTES (música, tema, subir)
+             CONTROLES FLOTANTES (música, tema, tamaño de letra, subir)
              El mp3 no se carga aquí: lo inyecta script.js durante el
              preloader, apenas empieza el proceso de precarga.
         ============================================================ -->
-       <!--  <div id="floating-controls" class="fixed inset-0 max-w-[450px] mx-auto z-40 pointer-events-none">
+        <div id="floating-controls" class="fixed inset-0 max-w-[450px] mx-auto z-40 pointer-events-none">
+            <!-- Música: esquina inferior izquierda -->
             <button id="music-toggle-btn" type="button" aria-label="Silenciar música" title="Silenciar música"
                 class="fc-btn absolute left-4 bottom-6 pointer-events-auto">
                 <span class="fc-wave"></span>
                 <i data-lucide="volume-2" class="w-[18px] h-[18px] relative z-10"></i>
-            </button>  -->
-
-        <div id="floating-controls" class="fixed inset-0 max-w-[450px] mx-auto z-40 pointer-events-none">
-                <!-- Música: esquina inferior izquierda -->
-                <button id="music-toggle-btn" type="button" aria-label="Silenciar música" title="Silenciar música"
-                    class="fc-btn absolute left-2 bottom-2 pointer-events-auto flex items-center justify-center">
-                    
-                    <!-- Contenedor invisible para las notas que irán saliendo -->
-                    <div id="music-notes-container" class="absolute inset-0 pointer-events-none z-0"></div>
-                    
-                    <!-- Imagen del vinilo (asegúrate de que la ruta sea correcta) -->
-                    <img src="assets/vinilo.webp" alt="Música" id="vinyl-icon" class="w-[71px] h-[71px] rounded-full relative z-10 transition-transform">
-                    
-                </button>
-            <!-- ... resto de tus botones ... -->
+            </button>
 
             <!-- Tema día/noche: esquina superior derecha -->
             <button id="theme-toggle-btn" type="button" aria-label="Cambiar ambiente" title="Cambiar ambiente"
                 class="fc-btn absolute right-4 top-6 pointer-events-auto">
                 <span class="fc-wave"></span>
                 <i data-lucide="moon" class="w-[18px] h-[18px] relative z-10"></i>
+            </button>
+
+            <!-- Tamaño de letra: esquina inferior derecha (arriba del botón subir) -->
+            <button id="font-size-btn" type="button" aria-label="Aumentar tamaño de letra" title="Tamaño de letra"
+                class="fc-btn absolute right-4 bottom-24 pointer-events-auto">
+                <span class="fc-wave"></span>
+                <i data-lucide="search" class="w-[18px] h-[18px] relative z-10"></i>
             </button>
 
             <!-- Volver arriba: esquina inferior derecha -->
@@ -887,66 +662,8 @@
                 <i data-lucide="arrow-up" class="w-[18px] h-[18px] relative z-10"></i>
             </button>
         </div>
-
-
     </div>
 
-<!-- Pantalla de carga animada -->
-<div id="loading-overlay" class="fixed inset-0 z-[100] bg-navy-dark/70 backdrop-blur-sm hidden flex-col justify-center items-center opacity-0 transition-opacity duration-500">
-    
-    <!-- Contenedor ajustado con margen superior (mt-24) para bajar la animación -->
-    <div class="w-full max-w-md flex flex-col items-center mt-24">
-        
-        <!-- Contenedor de la carretera -->
-        <div class="relative w-full h-32 overflow-hidden rounded-xl border border-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.2)] mb-6">
-            <!-- Fondo de carretera que se repite -->
-            <div class="absolute inset-0 w-full h-full animate-road"></div>
-            <!-- Moto (Barra de progreso) -->
-            <img src="assets/animated/moto.png" alt="Moto avanzando" class="absolute bottom-4 left-[-20%] w-24 animate-moto">
-            <img src="assets/animated/camino1.png" alt="Camino preloader" >
-        </div>
-
-        <!-- Texto con puntos suspensivos animados 
-        <h3 class="text-rosegold-300 font-serif text-2xl tracking-widest text-center">
-            Confirmando asistencia<span class="loading-dots"></span>
-        </h3>-->
-
-
-          
-
-
-                <!-- Barra de progreso -->
-                <div class="w-full max-w-md mx-auto mt-5 px-6">
-                    <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                        <div id="loading-progress"
-                            class="h-full bg-rosegold-300 rounded-full transition-all duration-500 ease-out"
-                            style="width: 0%;">
-                        </div>
-                    </div>
-                </div>
-                <!-- Porcentaje -->
-                <p id="loading-percent"
-                class="text-white/70 text-sm text-center mt-3">
-                    0 %
-                </p>
-              <!-- Mensaje de carga -->
-                    <h3 id="loading-message"
-                    class="text-rosegold-300 font-serif text-2xl tracking-widest text-center">
-                    Preparando tu confirmación...
-                </h3>
-        
-    </div>
-</div>
-
-    <script src="rsvp.js"></script>
-    <script src="music.js"></script>
-
-  <!--  <script src="minigame.js"></script>-->
-    <script defer src="minijuego.js"></script>
-        <script src="script.js"></script>
-
-
-   
-
+    <script src="script.js"></script>
 </body>
 </html>

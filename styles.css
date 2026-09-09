@@ -1,0 +1,520 @@
+/* ============================================================
+   Estilos principales de la invitación de boda
+============================================================ */
+
+body {
+    -webkit-tap-highlight-color: transparent;
+    background-color: var(--page-bg);
+    color: var(--text-primary);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 12% 12%, rgba(200, 163, 106, 0.08) 0 1px, transparent 2px),
+        radial-gradient(circle at 84% 16%, rgba(60, 110, 154, 0.07) 0 1px, transparent 2px),
+        radial-gradient(circle at 18% 84%, rgba(200, 163, 106, 0.05) 0 1px, transparent 2px),
+        linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0));
+    background-size: 250px 250px, 220px 220px, 280px 280px, auto;
+    opacity: 0.95;
+    mix-blend-mode: multiply;
+}
+
+:root {
+    color-scheme: light;
+    --page-bg: #FAF8F4;
+    --page-bg-alt: #F4F1EC;
+    --surface-bg: rgba(255, 255, 255, 0.95);
+    --surface-strong: #FFFFFF;
+    --text-primary: #2B2B2B;
+    --text-secondary: #5C5C5C;
+    --text-muted: #9E9E9E;
+    --border-color: #E5DED4;
+    --primary: #3C6E9A;
+    --primary-dark: #2D5678;
+    --primary-light: #DCE7F0;
+    --accent: #C8A36A;
+    --accent-dark: #A67C45;
+    --accent-soft: #E5C992;
+    --envelope-outer: #DCE7F0;
+    --envelope-inner: #FAF8F4;
+}
+
+html.dark {
+    color-scheme: dark;
+    --page-bg: #05070F;
+    --page-bg-alt: #070B19;
+    --surface-bg: rgba(13, 19, 43, 0.72);
+    --surface-strong: #0D132B;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --border-color: rgba(226, 178, 166, 0.2);
+    --primary: #DCE7F0;
+    --primary-dark: #2D5678;
+    --primary-light: #DCE7F0;
+    --accent: #E2B2A6;
+    --envelope-outer: #182a52;
+    --envelope-inner: #0B132B;
+}
+
+.invitation-shell {
+    background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,248,244,0.97));
+    color: var(--text-primary);
+    box-shadow: 0 14px 45px rgba(16,24,40,0.08);
+}
+
+html.dark .invitation-shell {
+    background: transparent;
+    box-shadow: none;
+}
+
+#preloader {
+    background-color: var(--surface-strong) !important;
+    color: var(--text-primary) !important;
+}
+html.dark #preloader {
+    background-color: #070B19 !important;
+    color: #F8FAFC !important;
+}
+
+.glass-card {
+    background: var(--surface-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+html.dark .glass-card {
+    background: rgba(13, 19, 43, 0.45);
+    border: 1px solid rgba(226, 178, 166, 0.15);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+
+html:not(.dark) .text-white,
+html:not(.dark) .text-slate-100,
+html:not(.dark) .text-slate-200,
+html:not(.dark) .text-slate-300 {
+    color: var(--text-primary) !important;
+}
+
+html:not(.dark) .text-slate-400,
+html:not(.dark) .text-slate-500,
+html:not(.dark) .text-slate-600,
+html:not(.dark) .text-slate-700,
+html:not(.dark) .text-slate-800 {
+    color: var(--text-secondary) !important;
+}
+
+html:not(.dark) .text-slate-400 {
+    color: var(--text-muted) !important;
+}
+
+html.dark .text-slate-400,
+html.dark .text-slate-500,
+html.dark .text-slate-600,
+html.dark .text-slate-700,
+html.dark .text-slate-800,
+html.dark .text-slate-300,
+html.dark .text-slate-200,
+html.dark .text-slate-100,
+html.dark .text-white {
+    color: var(--text-primary) !important;
+}
+
+html.dark .text-slate-400 {
+    color: #E2B2A6 !important;
+}
+
+html:not(.dark) [class*="bg-navy-dark"],
+html:not(.dark) [class*="bg-navy-medium"],
+html:not(.dark) [class*="bg-navy-light"] {
+    background-color: var(--surface-strong) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+html:not(.dark) .bg-white\/60,
+html:not(.dark) .bg-white\/80,
+html:not(.dark) .bg-white {
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    color: var(--text-primary) !important;
+}
+
+html:not(.dark) [class*="bg-gold"] {
+    background-color: rgba(200, 163, 106, 0.16) !important;
+    color: var(--accent-dark) !important;
+}
+
+html:not(.dark) .btn-gold-border {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0 10px 24px rgba(60, 110, 154, 0.16);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+html:not(.dark) .btn-gold-border:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    box-shadow: 0 12px 28px rgba(60, 110, 154, 0.22);
+    transform: translateY(-1px);
+}
+
+html:not(.dark) .btn-gold-border:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select {
+    background-color: var(--surface-strong) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 16px !important;
+    padding: 0.9rem 1rem !important;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+}
+
+html:not(.dark) input:focus,
+html:not(.dark) textarea:focus,
+html:not(.dark) select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(60, 110, 154, 0.14), 0 6px 16px rgba(200, 163, 106, 0.16) !important;
+}
+
+html:not(.dark) #envelope-gate {
+    background: linear-gradient(135deg, var(--primary-light), var(--surface-strong) 70%) !important;
+    color: var(--text-primary);
+}
+
+html:not(.dark) #envelope-flap {
+    background: linear-gradient(150deg, var(--primary) 0%, var(--primary-dark) 70%) !important;
+    border-bottom: 1px solid rgba(200, 163, 106, 0.35) !important;
+}
+
+html:not(.dark) #envelope-scene .absolute.inset-0[style*="background: linear-gradient(165deg"] {
+    background: linear-gradient(165deg, var(--envelope-outer), var(--envelope-inner) 65%) !important;
+}
+
+html:not(.dark) footer {
+    background: rgba(255,255,255,0.55) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Floating orbs keyframes */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-30px) scale(1.08); }
+}
+.animate-float {
+    animation: float 10s ease-in-out infinite;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Smooth scroll-reveal styles */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-element.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom focus rings and form enhancements */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #E2B2A6 !important;
+    box-shadow: 0 0 15px rgba(226, 178, 166, 0.3);
+}
+
+/* Animated border for buttons */
+.btn-gold-border {
+    position: relative;
+    background: linear-gradient(90deg, #D4AF37, #E2B2A6);
+    background-size: 200% auto;
+    transition: 0.5s;
+}
+.btn-gold-border:active {
+    transform: scale(0.96);
+    background-position: right center;
+}
+
+/* -------------------------------------------------------------
+   ENVELOPE GATE (Sobre de bienvenida)
+------------------------------------------------------------- */
+#envelope-scene {
+    perspective: 1400px;
+    animation: envelope-breathe 4.5s ease-in-out infinite;
+    transition: transform 0.25s ease;
+}
+#envelope-scene.is-pressed {
+    transform: scale(0.97);
+}
+#envelope-scene.is-opening {
+    animation-play-state: paused;
+}
+@keyframes envelope-breathe {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+#envelope-flap {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform: rotateX(0deg);
+    transform-origin: top center;
+    transition: transform 1.15s cubic-bezier(0.65, 0, 0.35, 1), filter 1.15s ease;
+}
+#envelope-flap.is-open {
+    transform: rotateX(-172deg);
+    filter: brightness(0.8);
+}
+
+/* Brillo que recorre la solapa, invitando a tocar */
+#flap-sheen {
+    background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.16) 45%, transparent 65%);
+    transform: translateX(-120%);
+    animation: sheen-sweep 5s ease-in-out infinite;
+}
+@keyframes sheen-sweep {
+    0%, 45% { transform: translateX(-120%); }
+    65%, 100% { transform: translateX(120%); }
+}
+
+/* Lacre: anillo pulsante invitando a tocar */
+.seal-pulse-ring {
+    animation: seal-pulse 2.6s ease-out infinite;
+}
+@keyframes seal-pulse {
+    0% { transform: scale(1); opacity: 0.55; }
+    70%, 100% { transform: scale(1.75); opacity: 0; }
+}
+
+/* Lacre partiéndose en dos mitades */
+#seal-left, #seal-right {
+    transition: transform 0.65s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease 0.1s;
+}
+#wax-seal.is-open #seal-left {
+    transform: translate(-9px, 16px) rotate(-22deg);
+    opacity: 0;
+}
+#wax-seal.is-open #seal-right {
+    transform: translate(9px, 16px) rotate(22deg);
+    opacity: 0;
+}
+#wax-seal .seal-label,
+#wax-seal .seal-pulse-ring {
+    transition: opacity 0.35s ease;
+}
+#wax-seal.is-open .seal-label,
+#wax-seal.is-open .seal-pulse-ring {
+    opacity: 0;
+}
+
+/* Carta que se desliza fuera del sobre */
+#letter-card {
+    opacity: 0;
+    transition: transform 5.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+}
+#letter-card.is-open {
+    transform: translate(-50%, -130px) scale(3.04);
+    opacity: 1;
+    filter: blur(0.2px);
+}
+
+#envelope-gate {
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+#envelope-gate.is-hidden {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.98);
+    pointer-events: none;
+}
+
+/* Dress-code tooltip */
+#dress-tooltip {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.color-main{
+
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(255,255,255,.15);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.color-main:hover{
+
+    transform:scale(1.15);
+
+    box-shadow:0 0 18px rgba(255,255,255,.25);
+
+}
+
+/* Respeta a quienes prefieren menos movimiento en pantalla */
+@media (prefers-reduced-motion: reduce) {
+    #envelope-scene { animation: none !important; }
+    #flap-sheen { animation: none !important; opacity: 0; }
+    .seal-pulse-ring { animation: none !important; opacity: 0; }
+    .animate-float, .animate-bounce { animation: none !important; }
+    * { scroll-behavior: auto !important; }
+}
+
+/* Success screen celebration */
+.confetti {
+    position: absolute;
+    top: -35px;
+    width: 8px;
+    height: 8px;
+    background-color: #E2B2A6;
+    border-radius: 60%;
+    animation: fall 4s linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+.member-toggle + .switch-track .switch-si{
+    display:none;
+}
+
+.member-toggle:checked + .switch-track{
+    background:#22c55e;
+}
+
+.member-toggle:checked + .switch-track .switch-thumb{
+    transform:translateX(32px);
+}
+
+.member-toggle:checked + .switch-track .switch-no{
+    display:none;
+}
+
+.member-toggle:checked + .switch-track .switch-si{
+    display:block;
+}
+
+/* Rotación continua del vinilo */
+@keyframes spinVinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Clase que asignaremos por JS cuando suene la música */
+.vinyl-spin {
+    animation: spinVinyl 3s linear infinite;
+}
+
+/* Animación para que las notas floten y desaparezcan */
+@keyframes floatNote {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-10px, -15px) scale(1.1); /* Sube y se hace más grande */
+    }
+    80% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(15px, -45px) scale(0.8) rotate(15deg); /* Desaparece arriba a la derecha */
+    }
+}
+
+/* Estilo base de cada nota generada */
+.music-note-anim {
+    position: absolute;
+    font-size: 1.2rem;
+    color: #4B5563; /* Color gris oscuro (ajústalo según tu paleta) */
+    animation: floatNote 2s ease-out forwards;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+
+/* ============================================================
+   ANIMACIÓN DE CARRETERA Y MOTO (RSVP)
+============================================================ */
+
+/* Animación continua del fondo de carretera sin cortes raros 2.5*/
+.animate-road {
+    background-image: url('assets/animated/camino1.png');
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    animation: scrollRoad 7.5s linear infinite;
+}
+
+@keyframes scrollRoad {
+    0% { background-position: 0 0; }
+        /* Ajusta este valor (-800px) dependiendo del ancho real de tu camino1.png */
+
+    /* El tamaño exacto compensa el ancho de tu imagen para un bucle perfecto */
+    100% { background-position: -1952px 0; } 
+}
+
+/* Animación de avance de la moto (simulando barra de progreso) */
+/* Tu clase CSS existente con la mejora de origen */
+.animate-moto {
+    animation: driveMoto 5.2s ease-in-out forwards;
+    
+    /* --- NUEVO: Cambia el punto de pivote a la rueda trasera --- */
+    /* Ajusta estos porcentajes (aprox abajo-izquierda) según la forma exacta de tu imagen de moto */
+    transform-origin: 20% 90%; 
+}
+
+/* Los keyframes son los mismos que en la Opción 1 */
+@keyframes driveMoto {
+    0%   { left: -20%; transform: rotate(0deg); }
+    40%  { left: 35%;  transform: rotate(0deg); }
+    80%  { left: 65%;  transform: rotate(0deg); } /* Comienza a levantarse */
+    100% { left: 120%; transform: rotate(-37deg); } /* Sale haciendo el caballito */
+}
+/* Animación para los puntos suspensivos */
+.loading-dots::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}
