@@ -1,0 +1,115 @@
+/* ==========================================
+   MINIGAME CSS - Corazones flotantes
+========================================== */
+
+#minigame-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* El contenedor no bloquea clics de la página */
+    z-index: 55; /* Debajo de los botones flotantes pero encima del contenido */
+    overflow: hidden;
+}
+
+/* El envoltorio controla la caída vertical */
+.heart-wrapper {
+    position: absolute;
+    top: -50px;
+    pointer-events: auto; /* Para que el corazón sí sea tocable */
+    cursor: pointer;
+    will-change: transform;
+    animation: fall linear forwards;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* El elemento interno controla el vaivén (estilo hoja) y la rotación */
+.heart-inner {
+    display: flex;
+    align-items: center;
+  /*  justify-center: center;*/
+    will-change: transform;
+    animation: sway ease-in-out infinite alternate;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* Animación al tocar (Pop) */
+.heart-wrapper.popped .heart-inner {
+    transform: scale(1.4) rotate(10deg) !important;
+    opacity: 0;
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(255,255,255,0.8));
+}
+
+/* Caída vertical (se inyecta duración dinámica en JS) */
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(110vh); }
+}
+
+/* Vaivén de la hoja */
+@keyframes sway {
+    0% { transform: translateX(-25px) rotate(-15deg); }
+    100% { transform: translateX(25px) rotate(15deg); }
+}
+
+/* Animación del contador superior derecho */
+@keyframes pop-counter {
+    0% { transform: translateY(10px) scale(0.8); opacity: 0; }
+    20% { transform: translateY(0) scale(1.1); opacity: 1; }
+    40% { transform: translateY(0) scale(1); opacity: 1; }
+    80% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-10px) scale(0.9); opacity: 0; }
+}
+
+.counter-animate {
+    animation: pop-counter 0.5s ease-out forwards;
+}
+
+/* Recompensas (desbloqueos) */
+.reward-item {
+    animation: reward-fade-in 0.8s ease-out forwards;
+}
+
+@keyframes reward-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   NUEVAS ANIMACIONES (Alertas y Xbox)
+========================================== */
+
+/* Hace que el puntaje aparezca y crezca un poquito */
+.counter-visible {
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+}
+
+/* Animación para las alertas que salen debajo del puntaje */
+.notif-fade-in-out {
+    animation: side-notif 4s ease-in-out forwards;
+}
+
+@keyframes side-notif {
+    0% { opacity: 0; transform: translateX(20px); }
+    10% { opacity: 1; transform: translateX(0); }
+    90% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(20px); }
+}
+
+/* Animación para el logro estilo Xbox 
+.xbox-show {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1.05) !important;
+}*/
+
+#xbox-achievement {
+    transform: translateX(-50%) translateY(40px);
+}
+
+.xbox-show {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) scale(1.05) !important;
+}

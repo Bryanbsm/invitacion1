@@ -492,7 +492,7 @@ input:focus, textarea:focus {
 /* Animación de avance de la moto (simulando barra de progreso) */
 /* Tu clase CSS existente con la mejora de origen */
 .animate-moto {
-    animation: driveMoto 5.2s ease-in-out forwards;
+    animation: driveMoto 6.1s ease-in-out forwards;
     
     /* --- NUEVO: Cambia el punto de pivote a la rueda trasera --- */
     /* Ajusta estos porcentajes (aprox abajo-izquierda) según la forma exacta de tu imagen de moto */

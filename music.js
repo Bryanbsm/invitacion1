@@ -38,7 +38,7 @@ function hidePreloader() {
    8. SISTEMA DE MÚSICA PREMIUM
 ------------------------------------------------------------- */
 // NUEVA VARIABLE GLOBAL PARA EL VOLUMEN INICIAL
-const INITIAL_VOLUME = 0.2; 
+const INITIAL_VOLUME = 0.1; 
 
 const musicToggleBtn = document.getElementById('music-toggle-btn');
 const MUSIC_MUTE_KEY = 'bk_music_muted';
@@ -121,9 +121,16 @@ function createFloatingNote() {
     note.innerText = notesSymbols[Math.floor(Math.random() * notesSymbols.length)];
     note.className = 'music-note-anim';
 
-    const leftOffset = Math.random() * 20 - 10;
+    const leftOffset = Math.random() * 20 - 18;
     note.style.left = `calc(50% + ${leftOffset}px)`;
-    note.style.bottom = '10px';
+// 2. POSICIÓN VERTICAL: Nacen más arriba para no quedar detrás del disco
+    note.style.bottom = '58px';
+
+// 3. VISIBILIDAD: Más grandes, color dorado y por encima de todo
+    note.style.color = '#907829'; 
+    note.style.fontSize = '24px'; 
+    note.style.zIndex = '60'; 
+    note.style.textShadow = '0 0 8px rgba(255,255,255,0.4)';
 
     container.appendChild(note);
 
@@ -133,40 +140,34 @@ function createFloatingNote() {
 function startBackgroundMusic() {
     localStorage.removeItem(MUSIC_MUTE_KEY);
     if (musicHasStarted) return;
-    if (isMusicMutedByUser()) {
-        updateMusicButtonUI(false);
-        return;
-    }
-
     musicHasStarted = true;
 
-    const beginPlayback = () => {
-        bgMusic.volume = 0;
-        const playPromise = bgMusic.play();
-        if (playPromise && playPromise.catch) {
-            playPromise.catch(() => { /* la invitación sigue funcionando sin música */ });
-        }
-        fadeVolume(INITIAL_VOLUME, 2000); // Usando la variable global
-        updateMusicButtonUI(true);
-    };
-
-    if (bgMusic.readyState >= 2) {
-        beginPlayback();
-    } else {
-        bgMusic.addEventListener('canplay', beginPlayback, { once: true });
+    // En móviles, la orden .play() DEBE ser inmediata y síncrona al toque.
+    // No podemos esperar al evento 'canplay'. El navegador gestionará el buffer solo.
+    bgMusic.volume = 0;
+    const playPromise = bgMusic.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            fadeVolume(INITIAL_VOLUME, 2000); 
+            updateMusicButtonUI(true);
+        }).catch(() => {
+            // Si el móvil lo bloquea por alguna política restrictiva extrema,
+            // reiniciamos el estado para que el botón funcione manualmente.
+            musicHasStarted = false;
+            updateMusicButtonUI(false);
+        });
     }
 
     bgMusic.addEventListener('ended', function onFirstEnded() {
         if (musicIsLooping) return;
         setTimeout(() => {
-            if (isMusicMutedByUser()) return;
             musicIsLooping = true;
             bgMusic.loop = true;
             bgMusic.volume = LOOP_VOLUME;
-            const p = bgMusic.play();
-            if (p && p.catch) p.catch(() => {});
+            bgMusic.play().catch(() => {});
         }, 2000);
-    });
+    }, { once: true });
 }
 
 if (musicToggleBtn) {
@@ -174,24 +175,27 @@ if (musicToggleBtn) {
         pulseButton(musicToggleBtn);
         if (navigator.vibrate) navigator.vibrate(20);
 
-        const currentlyMuted = isMusicMutedByUser();
+        // Si nunca llegó a arrancar, la iniciamos
+        if (!musicHasStarted) {
+            startBackgroundMusic();
+            return;
+        }
 
+        const currentlyMuted = isMusicMutedByUser();
+        
         if (!currentlyMuted) {
+            // ESTÁ SONANDO -> LO SILENCIAMOS
             localStorage.setItem(MUSIC_MUTE_KEY, 'true');
             fadeVolume(0, 400);
             setTimeout(() => bgMusic.pause(), 420);
             updateMusicButtonUI(false);
         } else {
+            // ESTÁ SILENCIADO -> LO REACTIVAMOS
             localStorage.removeItem(MUSIC_MUTE_KEY);
-            if (!musicHasStarted) {
-                startBackgroundMusic();
-            } else {
-                const target = musicIsLooping ? LOOP_VOLUME : INITIAL_VOLUME;
-                const p = bgMusic.play();
-                if (p && p.catch) p.catch(() => {});
-                fadeVolume(target, 1000);
-                updateMusicButtonUI(true);
-            }
+            const target = musicIsLooping ? LOOP_VOLUME : INITIAL_VOLUME;
+            bgMusic.play().catch(() => {});
+            fadeVolume(target, 1000);
+            updateMusicButtonUI(true);
         }
     });
 }
@@ -206,3 +210,6 @@ document.addEventListener('visibilitychange', () => {
         fadeVolume(volumeBeforeHidden, 1000);
     }
 });
+
+
+

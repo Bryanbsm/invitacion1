@@ -1,7 +1,7 @@
 /* Contenedor del puntaje efímero */
 #minigame-score-text {
     position: fixed;
-    top: 70px;
+    top: 25px;
     right: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;

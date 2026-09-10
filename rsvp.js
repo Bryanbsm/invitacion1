@@ -17,6 +17,22 @@ window.familiasData = {
         "USUARIO DE PRUEBA 1",
         "USUARIO DE PRUEBA 5 UAUA"
     ],
+    "4B": [
+        "USUARIO DE PRUEBA 1",
+        "USUARIO DE PRUEBA 5 UAUA"
+    ],
+    "5B": [
+        "USUARIO DE PRUEBA 1",
+        "USUARIO DE PRUEBA 5 UAUA"
+    ],
+    "6B": [
+        "USUARIO DE PRUEBA 1",
+        "USUARIO DE PRUEBA 5 UAUA"
+    ],
+    "7B": [
+        "USUARIO DE PRUEBA 1",
+        "USUARIO DE PRUEBA 5 UAUA"
+    ],
     "6302B": [
         "YISET MARTINEZ",
         "ANGEL MANUEL",

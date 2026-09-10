@@ -65,7 +65,7 @@ lucide.createIcons();
             let progress = 0;
             
             const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 5) + 3;
+                progress += Math.floor(Math.random() * 4) + 3;
                 if (progress >= 100) {
                     progress = 100;
                     clearInterval(interval);
@@ -933,7 +933,7 @@ rsvpForm.addEventListener('submit', function (e) {
     }, 10);
 
     // --- NUEVO: Animación fluida de la barra de progreso ---
-    const duration = 5500; // 6.2 segundos exactos
+    const duration = 5900; // 6.2 segundos exactos
     const startTime = Date.now();
     let animationFrameId;
 
@@ -945,14 +945,12 @@ rsvpForm.addEventListener('submit', function (e) {
 
         // Cambiar el mensaje según el porcentaje actual
         let message = 'Preparando motores...';
-        if (percent >= 25 && percent < 55) {
-            message = 'Registrando tu respuesta...';
-        } else if (percent >= 50 && percent < 80) {
-            message = 'Guardando tu confirmación...';
+        if (percent >= 25 && percent < 80) {
+            message = 'Registrando respuesta...';
         } else if (percent >= 80 && percent < 100) {
             message = 'Casi terminamos...';
         } else if (percent === 100) {
-            message = '¡Todo listo! ❤️';
+            message = '¡Todo listo! 💙';
         }
 
         updateLoadingProgress(percent, message);
@@ -993,7 +991,7 @@ rsvpForm.addEventListener('submit', function (e) {
     Promise.all([fetchPromise, animationPromise])
     .then(([data]) => {
         // Asegurarnos de que quede en 100% al terminar
-        updateLoadingProgress(100, '¡Todo listo! ❤️');
+        updateLoadingProgress(100, '¡Todo listo! 💙');
 
         // Desvanecer la pantalla de carga
         loadingOverlay.classList.remove('opacity-100');
@@ -1179,27 +1177,23 @@ envelopeGate.addEventListener('wheel', (e) => {
 }, { passive: true });
 
 let touchStartY = 0;
-let audioUnlockAttempted = false;
-
-function tryUnlockAudio() {
-    if (audioUnlockAttempted) return;
-    audioUnlockAttempted = true;
-    startBackgroundMusic();
-}
+let swipeDetected = false;
 
 envelopeGate.addEventListener('touchstart', (e) => {
     touchStartY = e.touches[0].clientY;
-    tryUnlockAudio();               // clave: dispara el audio aquí, apenas toca, no cuando se confirma el swipe
+    swipeDetected = false;
 }, { passive: true });
 
 envelopeGate.addEventListener('touchmove', (e) => {
-    if (touchStartY - e.touches[0].clientY > 12) openEnvelope();
+    e.preventDefault(); // clave: evita que Android lo clasifique como "scroll" y descalifique el gesto
+    if (touchStartY - e.touches[0].clientY > 12) swipeDetected = true;
+}, { passive: false }); // debe dejar de ser passive para poder usar preventDefault
+
+envelopeGate.addEventListener('touchend', () => {
+    if (swipeDetected) openEnvelope(); // openEnvelope() ya llama a startBackgroundMusic()
 }, { passive: true });
 
-envelopeGate.addEventListener('click', () => {
-    tryUnlockAudio();
-    openEnvelope();
-});
+envelopeGate.addEventListener('click', openEnvelope);
 
 // Si el usuario baja por toda la invitación y luego regresa arriba,
 // la carta vuelve a guardar su estado dentro del sobre.

@@ -72,18 +72,18 @@
         }
     </script>
     <link rel="stylesheet" href="styles.css">
-   <!-- <link rel="stylesheet" href="minigame.css">-->
     <link rel="stylesheet" href="minijuego.css">
+       <link rel="stylesheet" href="planner.css">
 
 </head>
 <body class="flex justify-center items-center min-h-screen text-slate-800 dark:text-slate-100 font-sans antialiased overflow-x-hidden overflow-hidden selection:bg-rosegold-300 selection:text-navy-dark transition-colors duration-500">
 
 
- <!-- BOTÓN MODO DÍA / NOCHE -->
+ <!-- BOTÓN MODO DÍA / NOCHE ULTIMOSCAMBIOS
     <button id="theme-toggle" class="fixed top-5 right-5 z-[60] w-10 h-10 rounded-full glass-card border-rosegold-300/40 dark:border-rosegold-300/30 flex items-center justify-center text-rosegold-500 dark:text-rosegold-300 transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg">
         <i data-lucide="sun" class="w-5 h-5 absolute transition-transform duration-500 rotate-0 scale-100 dark:-rotate-90 dark:scale-0"></i>
         <i data-lucide="moon" class="w-5 h-5 absolute transition-transform duration-500 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
-    </button>
+    </button>--> 
 
     <!-- PRELOADER -->
     <div id="preloader" class="fixed inset-0 z-[100] bg-[#070B19] dark:bg-navy-dark flex flex-col items-center justify-center text-center px-6 transition-all duration-700 ease-out">
@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="flex flex-col items-center gap-2">
-                    <p class="text-[13px] tracking-widest text-slate-400 uppercase">Toca el sobre o desliza para abrir <br><br><br><br><br><br><br>v3</p>
+                    <p class="text-[13px] tracking-widest text-slate-400 uppercase"> <br><br><br>Toca el sobre o desliza para abrir</p>
                     <div class="text-rosegold-300/60 animate-bounce">
                         <i data-lucide="chevron-down" class="w-5 h-5"></i>
                     </div>
@@ -490,6 +490,181 @@
                 </div>
             </section>
   -->     
+
+
+   <!-- SECTION 3: AGENDA DEL EVENTO —NUEVA TIMELINE INTERACTIVA -->
+            <section id="agenda" class="w-full px-6 py-20 relative reveal-element reveal-zoom-in">
+
+                <!-- Encabezado de la sección. -->
+                <div class="text-center mb-10">
+                    <span class="text-[10px] tracking-[0.3em] text-gold uppercase font-semibold">El Cronograma</span>
+                    <h2 class="font-serif text-3xl text-white mt-1">Así viviremos nuestro día</h2>
+                    <div class="w-10 h-[1px] bg-rosegold-300/40 mx-auto mt-3"></div>
+
+                    <!-- Texto guía que invita a recorrer la agenda con el dedo. -->
+                    <p class="mt-4 text-[10px] leading-relaxed tracking-wide text-slate-400/80 max-w-[280px] mx-auto">
+                        Desliza para descubrir, momento a momento, lo que hemos preparado para compartir contigo.
+                    </p>
+                </div>
+
+                <!-- Timeline completa: la línea y las tarjetas se sincronizan con el scroll. -->
+                <div class="agenda-timeline">
+
+                    <!-- Línea base de la timeline. -->
+                    <div class="agenda-track" aria-hidden="true">
+                        <!-- Esta barra crece según el avance del usuario en la sección. -->
+                        <span id="agenda-progress" class="agenda-track-progress"></span>
+                    </div>
+
+                    <!-- MOMENTO 01 -->
+                    <article class="agenda-item" data-agenda-step="1">
+                        <!-- Nodo visual que identifica el momento dentro del recorrido. 
+                        <div class="agenda-node" aria-hidden="true">
+                            <span class="font-serif text-sm">01</span>
+                        </div>-->
+                        <!-- Nodo visual centrado verticalmente junto a la tarjeta. -->
+                        <!-- Nodo visual centrado verticalmente junto a la tarjeta. -->
+                        <div class="agenda-node" aria-hidden="true">
+                            <!-- Icono de iglesia que representa la ceremonia. -->
+                            <i data-lucide="church" class="w-5 h-5"></i>
+                        </div>
+
+                        <!-- Tarjeta narrativa del evento. -->
+                        <div class="agenda-card">
+                            <!-- Etiqueta que reemplaza la hora por una idea del momento. -->
+                            <h4 class="font-serif">Ceremonia Religiosa</h4>
+
+                            <span class="agenda-kicker">Comenzamos con amor</span>
+
+
+                            <p class="agenda-description">
+                                El momento en que unimos nuestras vidas y damos gracias por este nuevo comienzo.
+                            </p>
+
+                            <!-- Icono decorativo asociado al evento. -->
+                            <span class="agenda-card-icon" aria-hidden="true">
+                                <i data-lucide="church" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- MOMENTO 02 -->
+                    <article class="agenda-item" data-agenda-step="2">
+
+                        <!-- Nodo visual centrado verticalmente junto a la tarjeta. -->
+<div class="agenda-node" aria-hidden="true">
+    <!-- Icono de cámara que representa la sesión de fotos. -->
+    <i data-lucide="camera" class="w-5 h-5"></i>
+</div>
+
+
+
+                        <div class="agenda-card">
+                            <h4 class="font-serif">Sesión de Fotos</h4>
+                            <span class="agenda-kicker">Recuerdos para siempre</span>
+
+                            
+
+                            <p class="agenda-description">
+                                Guardaremos en imágenes algunos de los instantes más especiales de este día.
+                            </p>
+
+                            <span class="agenda-card-icon" aria-hidden="true">
+                                <i data-lucide="camera" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- MOMENTO 03 -->
+                    <article class="agenda-item" data-agenda-step="3">
+<!-- Nodo visual centrado verticalmente junto a la tarjeta. -->
+<div class="agenda-node" aria-hidden="true">
+    <!-- Icono de copa que representa la recepción. -->
+    <i data-lucide="glass-water" class="w-5 h-5"></i>
+</div>
+
+                        <div class="agenda-card">
+                            <h4 class="font-serif">Recepción de Invitados</h4>
+                            <span class="agenda-kicker">Qué alegría verte</span>
+
+                            
+
+                            <p class="agenda-description">
+                                Nos encontramos, compartimos sonrisas y damos inicio juntos a la celebración.
+                            </p>
+
+                            <span class="agenda-card-icon" aria-hidden="true">
+                                <i data-lucide="glass-water" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- MOMENTO 04 -->
+                    <article class="agenda-item" data-agenda-step="4">
+<div class="agenda-node" aria-hidden="true">
+    <!-- Icono de destellos para representar el brindis y la celebración. -->
+    <i data-lucide="sparkles" class="w-5 h-5"></i>
+</div>
+
+                        <div class="agenda-card">
+                            <h4 class="font-serif">Brindis de Honor</h4>
+                            <span class="agenda-kicker">Por nuestra nueva historia</span>
+
+                            
+
+                            <p class="agenda-description">
+                                Levantamos nuestras copas para celebrar el amor, la familia y todo lo que viene.
+                            </p>
+
+                            <span class="agenda-card-icon" aria-hidden="true">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- MOMENTO 05 -->
+                    <article class="agenda-item" data-agenda-step="5">
+<!-- Nodo visual centrado verticalmente junto a la tarjeta. -->
+<div class="agenda-node" aria-hidden="true">
+    <!-- Icono de cubiertos que representa la comida. -->
+    <i data-lucide="utensils" class="w-5 h-5"></i>
+</div>
+
+                        <div class="agenda-card">
+                            <h4 class="font-serif">Comida</h4>
+                            <span class="agenda-kicker">A la mesa, a celebrar</span>
+
+                            
+
+                            <p class="agenda-description">
+                                Compartimos la mesa, disfrutamos juntos y cerramos esta parte del día con gratitud.
+                            </p>
+
+                            <span class="agenda-card-icon" aria-hidden="true">
+                                <i data-lucide="utensils" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Indicador de continuidad para reforzar la interacción. -->
+                    <div class="agenda-scroll-hint">
+                        <span>Continúa deslizando</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </div>
+
+                    <!-- Cierre de la agenda con una frase emocional. -->
+                    <div id="agenda-ending" class="agenda-ending">
+                        <div class="agenda-ending-line"></div>
+                        <p class="font-serif italic text-sm text-rosegold-300/80">
+                            Lo importante no será el orden de los momentos,<br>
+                            sino vivirlos juntos.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+
                 
   <!-- SECTION 5: codigo de vestimenta Colores -->
                 <section class="w-full flex flex-col justify-center px-1 py-12 relative">
@@ -787,6 +962,8 @@
                         </div>
                         <p class="font-serif text-rosegold-300 italic text-lg">- Bryan & Katherin -</p>
                         <button id="edit-rsvp-btn" type="button" class="text-[10px] tracking-widest text-rosegold-300/60 uppercase underline underline-offset-4 mt-2">¿Deseas actualizar tu respuesta?</button>
+
+                    <!--    <button id="edit-rsvp-btn" type="button" class="hidden text-[10px] tracking-widest text-rosegold-300/60 uppercase underline underline-offset-4 mt-2">¿Deseas actualizar tu respuesta? BOTON COMENTADO CON TAILWIOND</button> -->
                     </div>
                 </div>
             </section>
@@ -812,7 +989,7 @@
 
 
 <!-- Contenedor dinámico del contador y alertas laterales -->
-<div id="minigame-counter" class="fixed top-[70px] right-5 z-[60] flex flex-col items-end pointer-events-none">
+<div id="minigame-counter" class="fixed top-5 right-5 z-[60] w-10 h-10 flex flex-col items-end pointer-events-none">
    <!-- <span id="minigame-score-text" class="glass-card px-3 py-1.5 rounded-full text-rosegold-300 font-bold text-sm shadow-lg border border-rosegold-300/30 opacity-0">
         0 X 💙
     </span> -->
@@ -820,9 +997,6 @@
             class="glass-card px-3 py-1.5 rounded-full text-rosegold-300 font-bold text-sm shadow-lg border border-rosegold-300/30">
             0 x 💙
         </span>
-    
-    <!-- Aquí aparecerán las frases "Gracias por compartir..."
-    <div id="minigame-notifications" class="mt-2 flex flex-col items-end gap-2"></div> -->
 </div>
 
 <!-- LOGRO TIPO XBOX (Centro inferior)
@@ -873,12 +1047,12 @@
                 </button>
             <!-- ... resto de tus botones ... -->
 
-            <!-- Tema día/noche: esquina superior derecha -->
+            <!-- Tema día/noche: esquina superior derecha
             <button id="theme-toggle-btn" type="button" aria-label="Cambiar ambiente" title="Cambiar ambiente"
                 class="fc-btn absolute right-4 top-6 pointer-events-auto">
                 <span class="fc-wave"></span>
                 <i data-lucide="moon" class="w-[18px] h-[18px] relative z-10"></i>
-            </button>
+            </button> -->
 
             <!-- Volver arriba: esquina inferior derecha -->
             <button id="back-to-top-btn" type="button" aria-label="Volver arriba" title="Volver arriba"
@@ -943,6 +1117,7 @@
 
   <!--  <script src="minigame.js"></script>-->
     <script defer src="minijuego.js"></script>
+    <script src="planner.js"></script>
         <script src="script.js"></script>
 
 
