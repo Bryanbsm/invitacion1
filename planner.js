@@ -79,7 +79,7 @@
                                 * que acaba de entrar en un nuevo momento de la agenda.
                                 */
                                 if (navigator.vibrate) {
-                                    navigator.vibrate(22);
+                                    navigator.vibrate(52);
                                 }
                             }
                         }
@@ -169,7 +169,7 @@
 
                             /* Vibración corta al tocar un momento. */
                             if (navigator.vibrate) {
-                                navigator.vibrate(30);
+                                navigator.vibrate(80);
                             }
 
                             /*
