@@ -8,6 +8,7 @@
 lucide.createIcons();
 
   // --- Lógica del Modo Día/Noche ---
+  /*
         const themeToggleBtn = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
         const storageKey = 'wedding-theme-mode';
@@ -44,7 +45,7 @@ lucide.createIcons();
             localStorage.setItem(storageKey, nextTheme);
             applyTheme(nextTheme);
             if (navigator.vibrate) navigator.vibrate(50); // Pequeña vibración al cambiar
-        });
+        });*/
 
                 // Resto de Scripts
         function lockScroll() {
