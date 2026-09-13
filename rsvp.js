@@ -55,22 +55,24 @@ window.familiasData = {
         "SARAY VALENTINA"
     ],
     "18106B": [
-        "LENIS MEJIA"
+        "LENIS MEJIA",
+        "ELIAN BOTINA MEJIA"
     ],
     "21107B": [
+        "LENIS MEJIA",
         "ELIAN BOTINA MEJIA"
     ],
     "24508B": [
         "XIOMARA BOTINA",
         "STEVEN MOLINA",
-        "SALOME MOLINA",
-        "SARA MOLINA",
-        "SOFIA MOLINA"
+        "SALOME",
+        "SARA",
+        "SOFIA"
     ],
     "27409B": [
         "JHONATAN MEJIA",
         "ESTEFANIA",
-        "HIJO",
+        "JUAN",
         "MARIA JOSE"
     ],
     "302010B": [
@@ -80,14 +82,14 @@ window.familiasData = {
     "334011B": [
         "MARCELA MARTINEZ",
         "ANDRES JURADO",
-        "JULIAN JURADO",
+        "JULIAN",
         "HILARY"
     ],
     "364012B": [
         "LEIDY MARTINEZ",
         "PABLO SOTELO",
-        "ALEJANDRO SOTELO",
-        "LAURA SOTELO"
+        "ALEJANDRO",
+        "LAURA"
     ],
     "395013B": [
         "JORGE MARTINEZ",
@@ -111,6 +113,14 @@ window.familiasData = {
         "MONICA SANCHEZ",
         "ESPOSO"
     ],
+        "1322044B": [
+        "LUIS C",
+        "ACOMPAÑANTE"
+    ],
+        "1352045B": [
+        "YESID LUNA",
+        "ESPOSA"
+    ],
     "543018K": [
         "GLORIA ARCILA",
         "FERNANDO MORALES",
@@ -122,7 +132,7 @@ window.familiasData = {
     ],
     "602020K": [
         "VALENTINA ARCILA",
-        "JAVIER"
+        "JAVIER ARANGO"
     ],
     "631021K": [
         "RICARDO ARCILA BALLESTEROS"
@@ -209,6 +219,17 @@ window.familiasData = {
     ],
     "1261042K": [
         "ESTEBAN"
+    ],
+    "1472049K": [
+        "JHONATAN GONZALES",
+        "ACOMPAÑANTE"
+    ],
+        "1591053K": [
+        "JAIRO SANCHEZ"
+    ],
+    "1532051K": [
+        "YURANI ALEGRIA",
+        "ACOMPAÑANTE"
     ],
     "1292043": [
         "BRYAN",
