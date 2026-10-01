@@ -234,5 +234,17 @@ window.familiasData = {
     "1292043": [
         "BRYAN",
         "KATHERIN"
+    ],
+        "1592053B": [
+        "LADY FLOREZ",
+        "ESPOSO"
+    ],
+        "1622054B": [
+        "IVONNE VELASQUEZ",
+        "ESPOSO"
+    ],
+        "1652055B": [
+        "FRANKLIN RAMIREZ",
+        "ACOMPAÑANTE"
     ]
 };
